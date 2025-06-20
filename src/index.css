@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #0f1923;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Custom Swiper Styles */
+.swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 8px;
+    height: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #f7d54f; /* primary-yellow */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #f7d54f !important; /* primary-yellow */
+    font-weight: bold;
+    transform: scale(0.8);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 2rem !important;
+}
