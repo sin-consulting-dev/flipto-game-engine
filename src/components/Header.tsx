@@ -1,7 +1,27 @@
+import { useState, useRef, useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
   const navItems = ['Originals', 'Slots', 'Live Casino', 'Sports', 'Promotions', 'VIP'];
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="bg-secondary-dark/50 border-b border-border-color">
@@ -31,7 +51,24 @@ const Header = () => {
           <button className="bg-primary-yellow text-gray-900 font-bold py-2 w-32 rounded-md hover:bg-yellow-400 transition-colors">
             Deposit
           </button>
-          <FaUserCircle className="text-3xl text-gray-400" />
+          <div className="relative" ref={dropdownRef}>
+            <button onClick={toggleDropdown}>
+              <FaUserCircle className="text-3xl text-gray-400 cursor-pointer" />
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-secondary-dark rounded-md shadow-lg py-1 z-50">
+                <a href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-primary-dark">
+                  Profile Detail
+                </a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-primary-dark">
+                  Transaction History
+                </a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-primary-dark">
+                  Logout
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>
