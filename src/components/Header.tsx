@@ -1,10 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
-  const navItems = ['Originals', 'Slots', 'Live Casino', 'Sports', 'Promotions', 'VIP'];
+  const navItems = [
+    { name: 'Originals', path: '/' },
+    { name: 'Slots', path: '/slots' },
+    { name: 'Live Casino', path: '/live-casino' },
+    { name: 'Sports', path: '/sports' },
+    { name: 'Promotions', path: '/promotions' },
+    { name: 'VIP', path: '/vip' },
+  ];
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -27,16 +36,20 @@ const Header = () => {
     <header className="bg-secondary-dark/50 border-b border-border-color">
       <div className="container mx-auto flex items-center justify-between p-4">
         <div className="flex items-center space-x-8">
-          <h1 className="text-2xl font-bold text-primary-yellow">Flipto</h1>
+          <Link to="/" className="text-2xl font-bold text-primary-yellow hover:opacity-80 transition-opacity">Flipto</Link>
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`transition-colors px-1 pb-1 ${
+                  (item.path === '/' ? location.pathname === '/' : location.pathname.startsWith(item.path))
+                    ? 'text-primary-yellow border-b-2 border-primary-yellow font-bold'
+                    : 'text-gray-300 hover:text-white'
+                }`}
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
           </nav>
         </div>

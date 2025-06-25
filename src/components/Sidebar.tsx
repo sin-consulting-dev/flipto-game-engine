@@ -59,7 +59,7 @@ const Sidebar = () => {
     }
     
     return (
-        <aside className="w-72 p-4 flex flex-col space-y-6">
+        <aside className="w-72 p-4 flex flex-col space-y-6 pt-20">
             <div>
                 <h2 className="text-xl font-bold text-primary-yellow mb-4">Quick Access</h2>
                 <nav className="space-y-2">

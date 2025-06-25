@@ -1,17 +1,30 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import MainContent from './components/MainContent'
+import SlotsPage from './components/SlotsPage'
+import Footer from './components/Footer'
+import LiveCasinoPage from './components/LiveCasinoPage'
+import SportsbookPage from './components/SportsbookPage'
 
 function App() {
   return (
-    <div className="h-screen text-white flex flex-col">
-      <Header />
-      <div className="flex flex-1 overflow-hidden">
-        <Sidebar />
-        <MainContent />
+    <BrowserRouter>
+      <div className="h-screen text-white flex flex-col">
+        <Header />
+        <div className="flex flex-row flex-1 min-h-0 overflow-hidden">
+          <Sidebar />
+          <Routes>
+            <Route path="/slots" element={<SlotsPage />} />
+            <Route path="/live-casino" element={<LiveCasinoPage />} />
+            <Route path="/sports" element={<SportsbookPage />} />
+            <Route path="/*" element={<MainContent />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-    </div>
+    </BrowserRouter>
   )
 }
 
