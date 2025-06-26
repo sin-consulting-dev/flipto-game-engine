@@ -119,6 +119,26 @@ const VIPPage = () => {
     {
       question: "Where can I find the Flipto VIP Telegram channel?",
       answer: "Our VIP Telegram channel is exclusively for Platinum members and above. You'll receive an invitation link from your dedicated VIP host once you reach the qualifying tier."
+    },
+    {
+      question: "How do I qualify for VIP status?",
+      answer: "VIP qualification is based on your total wagering activity. Start with Bronze at $10k wagered and work your way up to Platinum VIP. Each tier unlocks additional exclusive benefits and personalized rewards."
+    },
+    {
+      question: "What are the withdrawal limits for VIP members?",
+      answer: "VIP members enjoy significantly higher withdrawal limits and priority processing. Platinum VIP members have unlimited withdrawals with same-day processing guaranteed by our dedicated team."
+    },
+    {
+      question: "Can I lose my VIP status?",
+      answer: "VIP status is permanent once achieved. However, some tier-specific benefits may require ongoing activity to maintain. Your dedicated VIP host will keep you informed about maintaining your benefits."
+    },
+    {
+      question: "How often are VIP bonuses distributed?",
+      answer: "VIP bonuses are distributed on multiple schedules: weekly bonuses every Monday, monthly bonuses on the 1st, and instant level-up bonuses. Platinum members also receive daily reload bonuses."
+    },
+    {
+      question: "Is there a VIP mobile app?",
+      answer: "Yes! VIP members get access to our exclusive mobile app with enhanced features, priority customer support, and exclusive mobile-only promotions. Download links are provided in your VIP dashboard."
     }
   ];
 
@@ -230,27 +250,29 @@ const VIPPage = () => {
           <p className="text-gray-400 text-lg">Reach out to our award-winning support team</p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
-          {faqItems.map((item, index) => (
-            <div key={index} className="bg-gray-800/60 rounded-lg border border-gray-700">
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-700/30 transition-colors"
-              >
-                <span className="text-white font-semibold text-lg">{item.question}</span>
-                {openFAQ === index ? (
-                  <FaChevronUp className="text-primary-yellow text-xl" />
-                ) : (
-                  <FaChevronDown className="text-gray-400 text-xl" />
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {faqItems.map((item, index) => (
+              <div key={index} className="bg-gray-800/60 rounded-lg border border-gray-700">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-700/30 transition-colors"
+                >
+                  <span className="text-white font-semibold text-lg">{item.question}</span>
+                  {openFAQ === index ? (
+                    <FaChevronUp className="text-primary-yellow text-xl flex-shrink-0 ml-4" />
+                  ) : (
+                    <FaChevronDown className="text-gray-400 text-xl flex-shrink-0 ml-4" />
+                  )}
+                </button>
+                {openFAQ === index && (
+                  <div className="px-6 pb-6">
+                    <p className="text-gray-300 leading-relaxed">{item.answer}</p>
+                  </div>
                 )}
-              </button>
-              {openFAQ === index && (
-                <div className="px-6 pb-6">
-                  <p className="text-gray-300 leading-relaxed">{item.answer}</p>
-                </div>
-              )}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
