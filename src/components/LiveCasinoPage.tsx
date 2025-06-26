@@ -295,25 +295,79 @@ const SortDropdown = ({ options, selected, onSelect }: { options: string[], sele
   );
 };
 
-const Section = ({ title, games, viewAllHref }: { title: string; games: LiveGame[]; viewAllHref?: string }) => (
-  <div className="mb-8">
-    <div className="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
-      <h2 className="text-2xl font-bold text-white tracking-tight">{title}</h2>
-      <a href={viewAllHref || '#'} className="text-primary-yellow hover:underline text-sm font-semibold">View All</a>
-    </div>
-    <div className="pb-2">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
-        {games.length === 0 ? (
-          <div className="text-gray-400 italic p-8 col-span-full">No games found for this provider.</div>
-        ) : (
-          games.map(game => (
-            <LiveCard key={game.name} game={game} />
-          ))
+const Section = ({ title, games }: { title: string; games: LiveGame[] }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const displayedGames = isExpanded ? games : games.slice(0, 10);
+  const hasMoreGames = games.length > 10;
+
+  return (
+    <div className="mb-12">
+      {/* Enhanced Section Header */}
+      <div className="bg-gradient-to-r from-gray-800/80 to-gray-900/60 rounded-xl p-6 mb-6 border border-gray-700/50 shadow-lg">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className="w-1 h-8 bg-primary-yellow rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white tracking-tight">{title}</h2>
+            <span className="bg-primary-yellow/20 text-primary-yellow px-3 py-1 rounded-full text-sm font-semibold">
+              {games.length} games
+            </span>
+          </div>
+          {hasMoreGames && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="flex items-center justify-center w-10 h-10 text-primary-yellow hover:text-yellow-400 transition-colors group bg-gray-700/30 hover:bg-gray-600/50 rounded-lg border border-gray-600/50 hover:border-primary-yellow/30"
+            >
+              <svg 
+                className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+      {/* Games Grid */}
+      <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700/30">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {games.length === 0 ? (
+            <div className="col-span-full text-center py-12">
+              <div className="text-gray-400 text-lg mb-2">No games found</div>
+              <div className="text-gray-500 text-sm">Try adjusting your search or filter settings</div>
+            </div>
+          ) : (
+            displayedGames.map(game => (
+              <LiveCard key={game.name} game={game} />
+            ))
+          )}
+        </div>
+        {/* Show More/Less Button at Bottom */}
+        {hasMoreGames && (
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="flex items-center space-x-2 bg-gray-700/50 hover:bg-gray-600/50 text-primary-yellow hover:text-yellow-400 transition-all px-6 py-3 rounded-lg border border-gray-600/50 hover:border-primary-yellow/30 group"
+            >
+              <span className="font-semibold">
+                {isExpanded ? `Hide ${games.length - 10} games` : `Show ${games.length - 10} more games`}
+              </span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
         )}
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const LiveCasinoPage = () => {
   const [selectedProvider, setSelectedProvider] = useState('All Providers');
