@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaRocket, FaCrown, FaChevronDown, FaChevronUp, FaGem, FaShieldAlt, FaTrophy, FaUserTie } from 'react-icons/fa';
 
 const VIPPage = () => {

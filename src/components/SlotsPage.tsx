@@ -1,15 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaSearch, FaFilter, FaSort } from 'react-icons/fa';
 import placeholder from '../assets/placeholder.svg';
-
-const categories = [
-  { key: 'top', label: 'Top Slots' },
-  { key: 'bonus', label: 'Bonus Buy' },
-  { key: 'new', label: 'New Slots' },
-  { key: 'crash', label: 'Crash Games' },
-  { key: 'table', label: 'Card & Table' },
-  { key: 'drops', label: 'Drops & Wins' },
-];
 
 const allProviders = [
   { name: 'All Providers', image: placeholder },
@@ -29,57 +20,193 @@ type SlotGame = {
   image: string;
 };
 
-const allSlots = Array.from({ length: 10 }, (_, i) => ({
-  name: `Slot Game ${i + 1}`,
-  rtp: `${96 + i * 0.2}%`,
-  tag: i === 0 ? 'HOT' : i === 1 ? 'NEW' : i === 4 ? 'JACKPOT' : '',
-  provider: i % 2 === 0 ? 'Pragmatic Play' : 'Playtech',
-  image: placeholder,
-}));
+const allSlots = [
+  { name: 'Gates of Olympus', rtp: '96.5%', tag: 'HOT', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Sweet Bonanza', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Book of Dead', rtp: '96.2%', tag: '', provider: 'Playtech', image: placeholder },
+  { name: 'Starburst', rtp: '96.1%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Gonzo\'s Quest', rtp: '96.0%', tag: 'JACKPOT', provider: 'NetEnt', image: placeholder },
+  { name: 'Wolf Gold', rtp: '96.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Mega Moolah', rtp: '88.1%', tag: 'JACKPOT', provider: 'Microgaming', image: placeholder },
+  { name: 'Reactoonz', rtp: '96.5%', tag: '', provider: 'Playtech', image: placeholder },
+  { name: 'Dead or Alive 2', rtp: '96.8%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Jammin\' Jars', rtp: '96.8%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Age of the Gods', rtp: '95.0%', tag: 'JACKPOT', provider: 'Playtech', image: placeholder },
+  { name: 'Thunderstruck II', rtp: '96.6%', tag: '', provider: 'Microgaming', image: placeholder },
+  { name: 'Bonanza', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'The Dog House', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Divine Fortune', rtp: '96.6%', tag: 'JACKPOT', provider: 'NetEnt', image: placeholder },
+  { name: 'Buffalo King', rtp: '96.1%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Immortal Romance', rtp: '96.9%', tag: '', provider: 'Microgaming', image: placeholder },
+  { name: 'Fire Joker', rtp: '96.2%', tag: '', provider: 'Playtech', image: placeholder },
+  { name: 'Vikings Go Berzerk', rtp: '96.1%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Great Rhino', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Avalon II', rtp: '95.9%', tag: '', provider: 'Microgaming', image: placeholder },
+  { name: 'Gladiator', rtp: '95.1%', tag: '', provider: 'Playtech', image: placeholder },
+  { name: 'Twin Spin', rtp: '96.6%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Mustang Gold', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Game of Thrones', rtp: '95.0%', tag: '', provider: 'Microgaming', image: placeholder },
+  { name: 'Playboy Gold', rtp: '96.2%', tag: '', provider: 'Playtech', image: placeholder },
+  { name: 'Jack and the Beanstalk', rtp: '96.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Pirate Gold', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Jurassic Park', rtp: '96.7%', tag: '', provider: 'Microgaming', image: placeholder },
+  { name: 'Kong', rtp: '96.0%', tag: '', provider: 'Playtech', image: placeholder },
+];
 
-const bonusBuy = Array.from({ length: 8 }, (_, i) => ({
-  name: `Bonus Buy ${i + 1}`,
-  rtp: `${95 + i * 0.3}%`,
-  tag: i === 2 ? 'BONUS' : '',
-  provider: i % 2 === 0 ? 'NetEnt' : 'Microgaming',
-  image: placeholder,
-}));
+const bonusBuy = [
+  { name: 'Gates of Olympus 1000', rtp: '96.5%', tag: 'BONUS', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Sweet Bonanza 1000', rtp: '96.3%', tag: 'BONUS', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Wanted Dead or Wild', rtp: '96.4%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Mental', rtp: '96.1%', tag: 'BONUS', provider: 'NetEnt', image: placeholder },
+  { name: 'Razor Shark', rtp: '96.7%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Money Train 2', rtp: '96.4%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Fruit Party', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Xways Hoarder', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Extra Juicy', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'San Quentin', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'The Hand of Midas', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Deadwood', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Starlight Princess', rtp: '96.5%', tag: 'BONUS', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Punk Rocker', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Fruit Party 2', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Karen Maneater', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Madame Destiny Megaways', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Tombstone R.I.P.', rtp: '96.1%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Fire Strike', rtp: '96.2%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Punk Toilet', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Aztec Gems', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Tombstone', rtp: '96.1%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Big Bass Bonanza', rtp: '96.7%', tag: 'BONUS', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Sticky Bandits', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Wild West Gold', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Punk Rocker xWays', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Floating Dragon', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Scudamore\'s Super Stakes', rtp: '96.0%', tag: '', provider: 'NetEnt', image: placeholder },
+];
 
-const newSlots = Array.from({ length: 8 }, (_, i) => ({
-  name: `New Slot ${i + 1}`,
-  rtp: `${97 + i * 0.1}%`,
-  tag: i === 0 ? 'NEW' : '',
-  provider: i % 2 === 0 ? 'Pragmatic Play' : 'NetEnt',
-  image: placeholder,
-}));
+const newSlots = [
+  { name: 'Starlight Princess 1000', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Sugar Rush 1000', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Fruit Party 3', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Gates of Gatot Kaca', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Curse of the Werewolf', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Wisdom of Athena', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Forge of Olympus', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Christmas Big Bass Bonanza', rtp: '96.7%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Wild Beach Party', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Mystic Chief', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Chicken Drop', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Magician\'s Secrets', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Gems Bonanza', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Bigger Bass Bonanza', rtp: '96.7%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Sword of Ares', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Pyramid King', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Cleocatra', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Fire Portals', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Mysterious Egypt', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Aztec Powernudge', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Spartan King', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Candy Stars', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Vampire vs Wolves', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Lucky Lightning', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Treasure Wild', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Smugglers Cove', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Drill that Gold', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Juicy Fruits', rtp: '96.5%', tag: 'NEW', provider: 'Pragmatic Play', image: placeholder },
+];
 
-const crashGames = Array.from({ length: 6 }, (_, i) => ({
-  name: `Crash Game ${i + 1}`,
-  rtp: `${97 + i * 0.2}%`,
-  tag: '',
-  provider: i % 2 === 0 ? 'Microgaming' : 'Playtech',
-  image: placeholder,
-}));
+const crashGames = [
+  { name: 'Aviator', rtp: '97.0%', tag: 'HOT', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'JetX', rtp: '97.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Spaceman', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Crash X', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Balloon', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Rocket Queen', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Sky Bounty', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Zeppelin', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Mines', rtp: '97.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Plinko', rtp: '99.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Limbo', rtp: '99.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Keno', rtp: '96.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Dice', rtp: '99.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Hi-Lo', rtp: '96.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Wheel', rtp: '96.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Crash', rtp: '99.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Tower', rtp: '99.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Slide', rtp: '96.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Hilo', rtp: '96.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Diamonds', rtp: '96.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Rocket', rtp: '97.0%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Moon', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Crash Royale', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Fly', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Blast', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Boom', rtp: '96.5%', tag: '', provider: 'Pragmatic Play', image: placeholder },
+];
 
-const tableGames = Array.from({ length: 6 }, (_, i) => ({
-  name: `Table Game ${i + 1}`,
-  rtp: `${98 + i * 0.1}%`,
-  tag: '',
-  provider: i % 2 === 0 ? 'NetEnt' : 'Pragmatic Play',
-  image: placeholder,
-}));
+const tableGames = [
+  { name: 'Blackjack', rtp: '99.5%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'European Roulette', rtp: '97.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Baccarat', rtp: '98.9%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Poker', rtp: '98.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'American Roulette', rtp: '94.7%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'French Roulette', rtp: '97.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Pai Gow Poker', rtp: '97.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Three Card Poker', rtp: '96.6%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Caribbean Stud', rtp: '94.8%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Casino Hold\'em', rtp: '97.8%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Red Dog', rtp: '97.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'War', rtp: '97.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Sic Bo', rtp: '97.2%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Craps', rtp: '98.6%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Dragon Tiger', rtp: '96.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Andar Bahar', rtp: '97.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Teen Patti', rtp: '97.2%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Oasis Poker', rtp: '94.1%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Let It Ride', rtp: '97.1%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Spanish 21', rtp: '99.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Pontoon', rtp: '99.6%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Switch', rtp: '99.9%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Double Exposure', rtp: '99.3%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Super Fun 21', rtp: '99.0%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: 'Perfect Pairs', rtp: '95.9%', tag: '', provider: 'NetEnt', image: placeholder },
+  { name: '21 Burn', rtp: '96.2%', tag: '', provider: 'NetEnt', image: placeholder },
+];
 
-const dropsWins = Array.from({ length: 8 }, (_, i) => ({
-  name: `Drop & Win ${i + 1}`,
-  rtp: `${96 + i * 0.2}%`,
-  tag: '',
-  provider: i % 2 === 0 ? 'Microgaming' : 'Playtech',
-  image: placeholder,
-}));
+const dropsWins = [
+  { name: 'Drops & Wins Tournament', rtp: '96.5%', tag: 'TOURNAMENT', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Daily Drops', rtp: '96.5%', tag: 'DAILY', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Weekly Wins', rtp: '96.5%', tag: 'WEEKLY', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Monthly Madness', rtp: '96.5%', tag: 'MONTHLY', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Mega Drop', rtp: '96.5%', tag: 'MEGA', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Prize Pool Paradise', rtp: '96.5%', tag: 'POOL', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Cash Cascade', rtp: '96.5%', tag: 'CASCADE', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Bonus Blitz', rtp: '96.5%', tag: 'BLITZ', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Jackpot Journey', rtp: '96.5%', tag: 'JACKPOT', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Fortune Frenzy', rtp: '96.5%', tag: 'FRENZY', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Lucky Legends', rtp: '96.5%', tag: 'LEGENDS', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Treasure Trove', rtp: '96.5%', tag: 'TREASURE', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Golden Giveaway', rtp: '96.5%', tag: 'GOLDEN', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Diamond Dreams', rtp: '96.5%', tag: 'DIAMOND', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Platinum Paradise', rtp: '96.5%', tag: 'PLATINUM', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Silver Sensation', rtp: '96.5%', tag: 'SILVER', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Bronze Bonanza', rtp: '96.5%', tag: 'BRONZE', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Crystal Challenge', rtp: '96.5%', tag: 'CRYSTAL', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Ruby Rush', rtp: '96.5%', tag: 'RUBY', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Emerald Excitement', rtp: '96.5%', tag: 'EMERALD', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Sapphire Spectacular', rtp: '96.5%', tag: 'SAPPHIRE', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Topaz Triumph', rtp: '96.5%', tag: 'TOPAZ', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Opal Odyssey', rtp: '96.5%', tag: 'OPAL', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Pearl Perfection', rtp: '96.5%', tag: 'PEARL', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Amethyst Adventure', rtp: '96.5%', tag: 'AMETHYST', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Garnet Glory', rtp: '96.5%', tag: 'GARNET', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Turquoise Tournament', rtp: '96.5%', tag: 'TURQUOISE', provider: 'Pragmatic Play', image: placeholder },
+  { name: 'Jade Jackpot', rtp: '96.5%', tag: 'JADE', provider: 'Pragmatic Play', image: placeholder },
+];
 
 const SlotCard = ({ slot }: { slot: typeof allSlots[0] }) => (
-  <div className="relative w-48 min-w-[12rem] rounded-lg overflow-hidden bg-gray-800/60 group shadow-md mx-2">
-    <div className="relative h-32 bg-gray-700 flex items-center justify-center">
+  <div className="relative rounded-lg overflow-hidden bg-gray-800/60 group shadow-md">
+    <div className="relative aspect-[3/2] bg-gray-700 flex items-center justify-center">
       <img src={slot.image} alt={slot.name} className="w-full h-full object-cover" />
       {slot.tag && (
         <span className="absolute top-2 left-2 bg-primary-yellow text-gray-900 text-xs font-bold px-2 py-1 rounded">
@@ -158,13 +285,13 @@ const SortDropdown = ({ options, selected, onSelect }: { options: string[], sele
 };
 
 const Section = ({ title, slots, viewAllHref }: { title: string; slots: SlotGame[]; viewAllHref?: string }) => (
-  <div className="mb-12">
+  <div className="mb-8">
     <div className="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
       <h2 className="text-2xl font-bold text-white tracking-tight">{title}</h2>
       <a href={viewAllHref || '#'} className="text-primary-yellow hover:underline text-sm font-semibold">View All</a>
     </div>
     <div className="pb-2">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
         {slots.length === 0 ? (
           <div className="text-gray-400 italic p-8 col-span-full">No games found for this provider.</div>
         ) : (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaFutbol, FaTableTennis, FaBasketballBall, FaVolleyballBall, FaBaseballBall, FaFootballBall, FaHandRock, FaSearch, FaClock, FaFilter, FaSort, FaStar } from 'react-icons/fa';
 import placeholder from '../assets/placeholder.svg';
 
