@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaSearch, FaFilter, FaSort } from 'react-icons/fa';
-import SlotsIcon from './icons/SlotsIcon';
 import placeholder from '../assets/placeholder.svg';
 
 const categories = [
@@ -21,6 +20,14 @@ const allProviders = [
 ];
 
 const sortOptions = ['Popular', 'Newest', 'A-Z', 'RTP'];
+
+type SlotGame = {
+  name: string;
+  rtp: string;
+  tag: string;
+  provider: string;
+  image: string;
+};
 
 const allSlots = Array.from({ length: 10 }, (_, i) => ({
   name: `Slot Game ${i + 1}`,
@@ -150,7 +157,7 @@ const SortDropdown = ({ options, selected, onSelect }: { options: string[], sele
   );
 };
 
-const Section = ({ title, slots, viewAllHref }: { title: string; slots: any[]; viewAllHref?: string }) => (
+const Section = ({ title, slots, viewAllHref }: { title: string; slots: SlotGame[]; viewAllHref?: string }) => (
   <div className="mb-12">
     <div className="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
       <h2 className="text-2xl font-bold text-white tracking-tight">{title}</h2>
@@ -171,21 +178,20 @@ const Section = ({ title, slots, viewAllHref }: { title: string; slots: any[]; v
 );
 
 const SlotsPage = () => {
-  const [activeCategory, setActiveCategory] = useState(categories[0].key);
   const [selectedProvider, setSelectedProvider] = useState('All Providers');
   const [sort, setSort] = useState('Popular');
   const [search, setSearch] = useState('');
 
   // Filter function
-  const filterByProvider = (games: any[]) =>
+  const filterByProvider = (games: SlotGame[]) =>
     selectedProvider === 'All Providers' ? games : games.filter(g => g.provider === selectedProvider);
 
   // Search function
-  const filterBySearch = (games: any[]) =>
+  const filterBySearch = (games: SlotGame[]) =>
     search.trim() === '' ? games : games.filter(g => g.name.toLowerCase().includes(search.toLowerCase()));
 
   // Compose filters
-  const filterGames = (games: any[]) => filterBySearch(filterByProvider(games));
+  const filterGames = (games: SlotGame[]) => filterBySearch(filterByProvider(games));
 
   return (
     <main className="flex-1 p-8 overflow-y-auto bg-secondary-dark min-h-0 pt-20">

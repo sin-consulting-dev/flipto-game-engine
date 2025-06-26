@@ -2,6 +2,17 @@ import React, { useState } from 'react';
 import { FaSearch, FaFilter, FaSort, FaCircle } from 'react-icons/fa';
 import placeholder from '../assets/placeholder.svg';
 
+type LiveGame = {
+  name: string;
+  provider: string;
+  type: string;
+  rtp: string;
+  tag: string;
+  minBet: number;
+  maxBet: number;
+  image: string;
+};
+
 const liveProviders = [
   { name: 'All Providers', image: placeholder },
   { name: 'Evolution', image: placeholder },
@@ -166,7 +177,7 @@ const SortDropdown = ({ options, selected, onSelect }: { options: string[], sele
   );
 };
 
-const Section = ({ title, games, viewAllHref }: { title: string; games: any[]; viewAllHref?: string }) => (
+const Section = ({ title, games, viewAllHref }: { title: string; games: LiveGame[]; viewAllHref?: string }) => (
   <div className="mb-12">
     <div className="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
       <h2 className="text-2xl font-bold text-white tracking-tight">{title}</h2>
@@ -192,15 +203,15 @@ const LiveCasinoPage = () => {
   const [search, setSearch] = useState('');
 
   // Filter function
-  const filterByProvider = (games: any[]) =>
+  const filterByProvider = (games: LiveGame[]) =>
     selectedProvider === 'All Providers' ? games : games.filter(g => g.provider === selectedProvider);
 
   // Search function
-  const filterBySearch = (games: any[]) =>
+  const filterBySearch = (games: LiveGame[]) =>
     search.trim() === '' ? games : games.filter(g => g.name.toLowerCase().includes(search.toLowerCase()));
 
   // Compose filters
-  const filterGames = (games: any[]) => filterBySearch(filterByProvider(games));
+  const filterGames = (games: LiveGame[]) => filterBySearch(filterByProvider(games));
 
   return (
     <main className="flex-1 p-8 overflow-y-auto bg-secondary-dark min-h-0 pt-20">

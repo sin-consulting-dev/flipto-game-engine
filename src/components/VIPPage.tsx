@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaStar, FaGift, FaHeadset, FaRocket, FaCrown, FaChevronDown, FaChevronUp, FaGem, FaShieldAlt, FaTrophy, FaUserTie } from 'react-icons/fa';
+import { FaRocket, FaCrown, FaChevronDown, FaChevronUp, FaGem, FaShieldAlt, FaTrophy, FaUserTie } from 'react-icons/fa';
 
 const VIPPage = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
