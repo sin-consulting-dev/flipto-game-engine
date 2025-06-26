@@ -74,62 +74,238 @@ const trendingEvents = [
   { teams: 'PSG vs Marseille', league: 'Ligue 1', odds: '1.55', bets: '29.1K', change: '+15%' },
 ];
 
-const soccerEvents = [
-  { 
-    league: 'Premier League', 
-    homeTeam: 'Arsenal', 
-    awayTeam: 'Manchester United', 
-    time: '15:30', 
-    date: 'Today', 
-    homeOdds: '1.85', 
-    drawOdds: '3.40', 
-    awayOdds: '4.20', 
-    isLive: false,
-    stats: { homeForm: 'WWDWL', awayForm: 'LWWDW', h2h: '2-1-2' },
-    markets: 15
-  },
-  { 
-    league: 'Premier League', 
-    homeTeam: 'Liverpool', 
-    awayTeam: 'Chelsea', 
-    time: '18:00', 
-    date: 'Today', 
-    homeOdds: '2.10', 
-    drawOdds: '3.20', 
-    awayOdds: '3.80', 
-    isLive: true,
-    stats: { homeForm: 'WWWDW', awayForm: 'WLDWW', h2h: '3-1-1' },
-    markets: 18
-  },
-  { 
-    league: 'La Liga', 
-    homeTeam: 'Real Madrid', 
-    awayTeam: 'Barcelona', 
-    time: '21:00', 
-    date: 'Tomorrow', 
-    homeOdds: '2.30', 
-    drawOdds: '3.10', 
-    awayOdds: '3.40', 
-    isLive: false,
-    stats: { homeForm: 'WWWWL', awayForm: 'WDWWW', h2h: '1-1-3' },
-    markets: 25
-  },
-];
+// Generate comprehensive mock data for soccer (145 events)
+const generateSoccerEvents = () => {
+  const leagues = ['Premier League', 'La Liga', 'Bundesliga', 'Serie A', 'Ligue 1', 'Champions League', 'Europa League'] as const;
+  const teams: Record<string, string[]> = {
+    'Premier League': ['Arsenal', 'Manchester United', 'Liverpool', 'Chelsea', 'Manchester City', 'Tottenham', 'Newcastle', 'Brighton', 'Aston Villa', 'West Ham', 'Crystal Palace', 'Fulham', 'Wolves', 'Everton', 'Brentford', 'Nottingham Forest', 'Luton Town', 'Burnley', 'Sheffield United', 'Bournemouth'],
+    'La Liga': ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Sevilla', 'Real Sociedad', 'Betis', 'Villarreal', 'Valencia', 'Athletic Bilbao', 'Getafe', 'Osasuna', 'Cadiz', 'Mallorca', 'Las Palmas', 'Girona', 'Alaves', 'Celta Vigo', 'Granada', 'Almeria', 'Rayo Vallecano'],
+    'Bundesliga': ['Bayern Munich', 'Borussia Dortmund', 'RB Leipzig', 'Union Berlin', 'SC Freiburg', 'Bayer Leverkusen', 'Eintracht Frankfurt', 'Wolfsburg', 'Mainz', 'Borussia Monchengladbach', 'FC Koln', 'Hoffenheim', 'Werder Bremen', 'Augsburg', 'Heidenheim', 'VfL Bochum', 'Darmstadt', 'Stuttgart'],
+    'Serie A': ['Juventus', 'AC Milan', 'Inter Milan', 'Napoli', 'AS Roma', 'Lazio', 'Atalanta', 'Fiorentina', 'Bologna', 'Torino', 'Monza', 'Genoa', 'Lecce', 'Udinese', 'Cagliari', 'Hellas Verona', 'Empoli', 'Frosinone', 'Sassuolo', 'Salernitana'],
+    'Ligue 1': ['PSG', 'Marseille', 'Monaco', 'Lille', 'Lyon', 'Nice', 'Lens', 'Rennes', 'Montpellier', 'Toulouse', 'Strasbourg', 'Nantes', 'Brest', 'Reims', 'Le Havre', 'Metz', 'Lorient', 'Clermont'],
+    'Champions League': ['Real Madrid', 'Manchester City', 'Bayern Munich', 'PSG', 'Arsenal', 'Barcelona', 'Inter Milan', 'Atletico Madrid', 'Borussia Dortmund', 'AC Milan', 'Napoli', 'Porto', 'Copenhagen', 'Lazio', 'PSV', 'Real Sociedad'],
+    'Europa League': ['Liverpool', 'West Ham', 'Brighton', 'Aston Villa', 'Fiorentina', 'Roma', 'Atalanta', 'Bayer Leverkusen', 'Sporting CP', 'Benfica', 'Rangers', 'Slavia Prague', 'Qarabag', 'Molde', 'Union SG', 'PAOK']
+  };
+  const times = ['15:30', '18:00', '20:45', '12:30', '17:00', '19:30', '21:00', '16:00', '14:00'];
+  const dates = ['Today', 'Tomorrow', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'];
+  const forms = ['WWWWW', 'WWWDL', 'WDWDL', 'DWWDL', 'LWWDW', 'LLDWW', 'DDLWW', 'WLDWL'];
+  
+  const events = [];
+  for (let i = 0; i < 145; i++) {
+    const league = leagues[Math.floor(Math.random() * leagues.length)];
+    const leagueTeams = teams[league];
+    const homeTeam = leagueTeams[Math.floor(Math.random() * leagueTeams.length)];
+    let awayTeam = leagueTeams[Math.floor(Math.random() * leagueTeams.length)];
+    while (awayTeam === homeTeam) {
+      awayTeam = leagueTeams[Math.floor(Math.random() * leagueTeams.length)];
+    }
+    
+    events.push({
+      league,
+      homeTeam,
+      awayTeam,
+      time: times[Math.floor(Math.random() * times.length)],
+      date: dates[Math.floor(Math.random() * dates.length)],
+      homeOdds: (1.5 + Math.random() * 3).toFixed(2),
+      drawOdds: (2.8 + Math.random() * 1.5).toFixed(2),
+      awayOdds: (1.5 + Math.random() * 4).toFixed(2),
+      isLive: Math.random() < 0.15,
+      stats: { 
+        homeForm: forms[Math.floor(Math.random() * forms.length)], 
+        awayForm: forms[Math.floor(Math.random() * forms.length)], 
+        h2h: `${Math.floor(Math.random() * 5)}-${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 5)}` 
+      },
+      markets: Math.floor(Math.random() * 20) + 10
+    });
+  }
+  return events;
+};
 
-const basketballEvents = [
-  { 
-    league: 'NBA', 
-    homeTeam: 'Los Angeles Lakers', 
-    awayTeam: 'Boston Celtics', 
-    time: '02:00', 
-    date: 'Tomorrow', 
-    homeOdds: '1.95', 
-    awayOdds: '1.95', 
-    isLive: false,
-    stats: { homeForm: 'WWLWW', awayForm: 'LWWWL', h2h: '2-1' },
-    markets: 12
-  },
-];
+// Generate basketball events (67 events)
+const generateBasketballEvents = () => {
+  const leagues = ['NBA', 'EuroLeague', 'NCAA'] as const;
+  const teams: Record<string, string[]> = {
+    'NBA': ['Los Angeles Lakers', 'Boston Celtics', 'Golden State Warriors', 'Miami Heat', 'Chicago Bulls', 'New York Knicks', 'Philadelphia 76ers', 'Brooklyn Nets', 'Milwaukee Bucks', 'Phoenix Suns', 'Dallas Mavericks', 'Denver Nuggets', 'Memphis Grizzlies', 'Sacramento Kings', 'Portland Trail Blazers', 'Utah Jazz', 'Oklahoma City Thunder', 'San Antonio Spurs', 'Houston Rockets', 'Orlando Magic', 'Atlanta Hawks', 'Charlotte Hornets', 'Washington Wizards', 'Detroit Pistons', 'Indiana Pacers', 'Cleveland Cavaliers', 'Toronto Raptors', 'Minnesota Timberwolves', 'Los Angeles Clippers', 'New Orleans Pelicans'],
+    'EuroLeague': ['Real Madrid', 'Barcelona', 'Fenerbahce', 'Anadolu Efes', 'CSKA Moscow', 'Olympiacos', 'Panathinaikos', 'Zalgiris', 'Maccabi Tel Aviv', 'Bayern Munich', 'Alba Berlin', 'Baskonia', 'Valencia', 'Virtus Bologna', 'Milano', 'Monaco', 'ASVEL', 'Partizan'],
+    'NCAA': ['Duke', 'North Carolina', 'Kentucky', 'Kansas', 'UCLA', 'Michigan State', 'Arizona', 'Gonzaga', 'Villanova', 'Syracuse', 'Louisville', 'Indiana', 'Connecticut', 'Florida', 'Ohio State', 'Michigan', 'Texas', 'Auburn', 'Tennessee', 'Arkansas']
+  };
+  const times = ['02:00', '02:30', '03:00', '19:00', '21:30', '20:00', '01:30'];
+  const dates = ['Today', 'Tomorrow', 'Sunday', 'Monday', 'Tuesday'];
+  const forms = ['WWWWL', 'LWWWW', 'WLWLW', 'LLWWW', 'WWLLL', 'DWWWL'];
+  
+  const events = [];
+  for (let i = 0; i < 67; i++) {
+    const league = leagues[Math.floor(Math.random() * leagues.length)];
+    const leagueTeams = teams[league];
+    const homeTeam = leagueTeams[Math.floor(Math.random() * leagueTeams.length)];
+    let awayTeam = leagueTeams[Math.floor(Math.random() * leagueTeams.length)];
+    while (awayTeam === homeTeam) {
+      awayTeam = leagueTeams[Math.floor(Math.random() * leagueTeams.length)];
+    }
+    
+    events.push({
+      league,
+      homeTeam,
+      awayTeam,
+      time: times[Math.floor(Math.random() * times.length)],
+      date: dates[Math.floor(Math.random() * dates.length)],
+      homeOdds: (1.6 + Math.random() * 2.5).toFixed(2),
+      awayOdds: (1.6 + Math.random() * 2.5).toFixed(2),
+      isLive: Math.random() < 0.12,
+      stats: { 
+        homeForm: forms[Math.floor(Math.random() * forms.length)], 
+        awayForm: forms[Math.floor(Math.random() * forms.length)], 
+        h2h: `${Math.floor(Math.random() * 10)}-${Math.floor(Math.random() * 10)}` 
+      },
+      markets: Math.floor(Math.random() * 15) + 8
+    });
+  }
+  return events;
+};
+
+// Generate tennis events (89 events)
+const generateTennisEvents = () => {
+  const tournaments = ['ATP Masters', 'WTA Premier', 'Grand Slam', 'ATP 250', 'WTA International', 'Challenger'];
+  const players = ['Novak Djokovic', 'Carlos Alcaraz', 'Daniil Medvedev', 'Jannik Sinner', 'Andrey Rublev', 'Stefanos Tsitsipas', 'Holger Rune', 'Casper Ruud', 'Taylor Fritz', 'Tommy Paul', 'Iga Swiatek', 'Aryna Sabalenka', 'Coco Gauff', 'Elena Rybakina', 'Jessica Pegula', 'Ons Jabeur', 'Marketa Vondrousova', 'Karolina Muchova', 'Barbora Krejcikova', 'Maria Sakkari', 'Rafael Nadal', 'Alexander Zverev', 'Grigor Dimitrov', 'Hubert Hurkacz', 'Ben Shelton', 'Frances Tiafoe', 'Sebastian Korda', 'Alex de Minaur'];
+  const times = ['14:00', '16:30', '19:00', '21:30', '12:00', '17:00'];
+  const dates = ['Today', 'Tomorrow', 'Sunday', 'Monday'];
+  
+  const events = [];
+  for (let i = 0; i < 89; i++) {
+    const tournament = tournaments[Math.floor(Math.random() * tournaments.length)];
+    const homePlayer = players[Math.floor(Math.random() * players.length)];
+    let awayPlayer = players[Math.floor(Math.random() * players.length)];
+    while (awayPlayer === homePlayer) {
+      awayPlayer = players[Math.floor(Math.random() * players.length)];
+    }
+    
+    events.push({
+      league: tournament,
+      homeTeam: homePlayer,
+      awayTeam: awayPlayer,
+      time: times[Math.floor(Math.random() * times.length)],
+      date: dates[Math.floor(Math.random() * dates.length)],
+      homeOdds: (1.3 + Math.random() * 3).toFixed(2),
+      awayOdds: (1.3 + Math.random() * 3).toFixed(2),
+      isLive: Math.random() < 0.1,
+      stats: { 
+        homeForm: 'N/A', 
+        awayForm: 'N/A', 
+        h2h: `${Math.floor(Math.random() * 8)}-${Math.floor(Math.random() * 8)}` 
+      },
+      markets: Math.floor(Math.random() * 12) + 6
+    });
+  }
+  return events;
+};
+
+// Generate remaining sports events
+const generateVolleyballEvents = () => {
+  const leagues = ['FIVB World League', 'European Championship', 'Olympics', 'Nations League'];
+  const teams = ['Brazil', 'USA', 'Poland', 'Italy', 'France', 'Russia', 'Serbia', 'Argentina', 'Japan', 'Iran', 'Turkey', 'Germany', 'Netherlands', 'Bulgaria', 'Canada', 'Australia', 'China', 'South Korea'];
+  const events = [];
+  for (let i = 0; i < 34; i++) {
+    const homeTeam = teams[Math.floor(Math.random() * teams.length)];
+    let awayTeam = teams[Math.floor(Math.random() * teams.length)];
+    while (awayTeam === homeTeam) {
+      awayTeam = teams[Math.floor(Math.random() * teams.length)];
+    }
+    events.push({
+      league: leagues[Math.floor(Math.random() * leagues.length)],
+      homeTeam, awayTeam,
+      time: ['16:00', '18:30', '20:00'][Math.floor(Math.random() * 3)],
+      date: ['Today', 'Tomorrow', 'Sunday'][Math.floor(Math.random() * 3)],
+      homeOdds: (1.4 + Math.random() * 2.8).toFixed(2),
+      awayOdds: (1.4 + Math.random() * 2.8).toFixed(2),
+      isLive: Math.random() < 0.08,
+      stats: { homeForm: 'N/A', awayForm: 'N/A', h2h: `${Math.floor(Math.random() * 6)}-${Math.floor(Math.random() * 6)}` },
+      markets: Math.floor(Math.random() * 8) + 5
+    });
+  }
+  return events;
+};
+
+const generateBaseballEvents = () => {
+  const leagues = ['MLB', 'NPB', 'KBO', 'World Baseball Classic'];
+  const teams = ['New York Yankees', 'Los Angeles Dodgers', 'Houston Astros', 'Atlanta Braves', 'Philadelphia Phillies', 'San Diego Padres', 'Toronto Blue Jays', 'Seattle Mariners', 'Tampa Bay Rays', 'Baltimore Orioles', 'Texas Rangers', 'Arizona Diamondbacks', 'Milwaukee Brewers', 'Miami Marlins', 'St. Louis Cardinals', 'Chicago Cubs', 'San Francisco Giants', 'Cincinnati Reds', 'Boston Red Sox', 'Minnesota Twins', 'Detroit Tigers', 'Cleveland Guardians', 'Kansas City Royals', 'Los Angeles Angels', 'Oakland Athletics', 'Colorado Rockies', 'Washington Nationals', 'Pittsburgh Pirates'];
+  const events = [];
+  for (let i = 0; i < 28; i++) {
+    const homeTeam = teams[Math.floor(Math.random() * teams.length)];
+    let awayTeam = teams[Math.floor(Math.random() * teams.length)];
+    while (awayTeam === homeTeam) {
+      awayTeam = teams[Math.floor(Math.random() * teams.length)];
+    }
+    events.push({
+      league: leagues[Math.floor(Math.random() * leagues.length)],
+      homeTeam, awayTeam,
+      time: ['19:00', '20:30', '22:00', '01:00'][Math.floor(Math.random() * 4)],
+      date: ['Today', 'Tomorrow', 'Sunday', 'Monday'][Math.floor(Math.random() * 4)],
+      homeOdds: (1.6 + Math.random() * 2.2).toFixed(2),
+      awayOdds: (1.6 + Math.random() * 2.2).toFixed(2),
+      isLive: Math.random() < 0.1,
+      stats: { homeForm: 'N/A', awayForm: 'N/A', h2h: `${Math.floor(Math.random() * 12)}-${Math.floor(Math.random() * 12)}` },
+      markets: Math.floor(Math.random() * 10) + 8
+    });
+  }
+  return events;
+};
+
+const generateFootballEvents = () => {
+  const leagues = ['NFL', 'College Football', 'CFL'];
+  const teams = ['Kansas City Chiefs', 'Buffalo Bills', 'Cincinnati Bengals', 'Miami Dolphins', 'New England Patriots', 'Pittsburgh Steelers', 'Cleveland Browns', 'Baltimore Ravens', 'Tennessee Titans', 'Indianapolis Colts', 'Houston Texans', 'Jacksonville Jaguars', 'Denver Broncos', 'Las Vegas Raiders', 'Los Angeles Chargers', 'Philadelphia Eagles', 'Dallas Cowboys', 'New York Giants', 'Washington Commanders', 'Green Bay Packers', 'Minnesota Vikings', 'Chicago Bears', 'Detroit Lions', 'Tampa Bay Buccaneers', 'New Orleans Saints', 'Atlanta Falcons', 'Carolina Panthers', 'Los Angeles Rams', 'San Francisco 49ers', 'Seattle Seahawks', 'Arizona Cardinals'];
+  const events = [];
+  for (let i = 0; i < 15; i++) {
+    const homeTeam = teams[Math.floor(Math.random() * teams.length)];
+    let awayTeam = teams[Math.floor(Math.random() * teams.length)];
+    while (awayTeam === homeTeam) {
+      awayTeam = teams[Math.floor(Math.random() * teams.length)];
+    }
+    events.push({
+      league: leagues[Math.floor(Math.random() * leagues.length)],
+      homeTeam, awayTeam,
+      time: ['17:00', '20:30', '01:00'][Math.floor(Math.random() * 3)],
+      date: ['Today', 'Tomorrow', 'Sunday'][Math.floor(Math.random() * 3)],
+      homeOdds: (1.7 + Math.random() * 2).toFixed(2),
+      awayOdds: (1.7 + Math.random() * 2).toFixed(2),
+      isLive: Math.random() < 0.06,
+      stats: { homeForm: 'N/A', awayForm: 'N/A', h2h: `${Math.floor(Math.random() * 8)}-${Math.floor(Math.random() * 8)}` },
+      markets: Math.floor(Math.random() * 12) + 15
+    });
+  }
+  return events;
+};
+
+const generateBoxingEvents = () => {
+  const fighters = ['Tyson Fury', 'Oleksandr Usyk', 'Anthony Joshua', 'Deontay Wilder', 'Andy Ruiz Jr', 'Dillian Whyte', 'Luis Ortiz', 'Joseph Parker', 'Derek Chisora', 'Otto Wallin', 'Canelo Alvarez', 'Gennady Golovkin', 'Dmitry Bivol', 'Artur Beterbiev', 'Callum Smith', 'Billy Joe Saunders', 'Terence Crawford', 'Errol Spence Jr', 'Keith Thurman', 'Shawn Porter', 'Danny Garcia', 'Mikey Garcia'];
+  const events = [];
+  for (let i = 0; i < 12; i++) {
+    const homeTeam = fighters[Math.floor(Math.random() * fighters.length)];
+    let awayTeam = fighters[Math.floor(Math.random() * fighters.length)];
+    while (awayTeam === homeTeam) {
+      awayTeam = fighters[Math.floor(Math.random() * fighters.length)];
+    }
+    events.push({
+      league: ['WBC', 'WBA', 'IBF', 'WBO', 'Exhibition'][Math.floor(Math.random() * 5)],
+      homeTeam, awayTeam,
+      time: ['22:00', '23:00', '02:00'][Math.floor(Math.random() * 3)],
+      date: ['Today', 'Tomorrow', 'Saturday'][Math.floor(Math.random() * 3)],
+      homeOdds: (1.3 + Math.random() * 3.5).toFixed(2),
+      awayOdds: (1.3 + Math.random() * 3.5).toFixed(2),
+      isLive: Math.random() < 0.05,
+      stats: { homeForm: 'N/A', awayForm: 'N/A', h2h: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 3)}` },
+      markets: Math.floor(Math.random() * 8) + 6
+    });
+  }
+  return events;
+};
+
+const soccerEvents = generateSoccerEvents();
+const basketballEvents = generateBasketballEvents();
+const tennisEvents = generateTennisEvents();
+const volleyballEvents = generateVolleyballEvents();
+const baseballEvents = generateBaseballEvents();
+const footballEvents = generateFootballEvents();
+const boxingEvents = generateBoxingEvents();
 
 type BetSlipItem = {
   id: string;
@@ -325,11 +501,23 @@ const SportsbookPage = () => {
   const [sort, setSort] = useState('Popular');
   const [betSlip, setBetSlip] = useState<BetSlipItem[]>([]);
   const [showStats, setShowStats] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
 
   const getCurrentEvents = (): SportEvent[] => {
     switch (activeSport) {
       case 'basketball':
         return basketballEvents;
+      case 'tennis':
+        return tennisEvents;
+      case 'volleyball':
+        return volleyballEvents;
+      case 'baseball':
+        return baseballEvents;
+      case 'football':
+        return footballEvents;
+      case 'boxing':
+        return boxingEvents;
       case 'soccer':
       default:
         return soccerEvents;
@@ -358,7 +546,29 @@ const SportsbookPage = () => {
   // Compose filters
   const filterEvents = (events: SportEvent[]) => filterBySearch(filterByProvider(events));
 
-  const filteredEvents = filterEvents(getCurrentEvents());
+  const allFilteredEvents = filterEvents(getCurrentEvents());
+  
+  // Pagination logic
+  const totalPages = Math.ceil(allFilteredEvents.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedEvents = allFilteredEvents.slice(startIndex, endIndex);
+
+  // Reset to page 1 when changing sports or filters
+  const handleSportChange = (sport: string) => {
+    setActiveSport(sport);
+    setCurrentPage(1);
+  };
+
+  const handleProviderChange = (provider: string) => {
+    setSelectedProvider(provider);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (searchTerm: string) => {
+    setSearch(searchTerm);
+    setCurrentPage(1);
+  };
 
   return (
     <main className="flex-1 overflow-y-auto bg-secondary-dark min-h-0 pt-20 w-full">
@@ -530,7 +740,7 @@ const SportsbookPage = () => {
               <input
                 type="text"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={e => handleSearchChange(e.target.value)}
                 placeholder="Search events, teams, leagues..."
                 className="bg-transparent outline-none w-full text-white placeholder-gray-400 text-base"
               />
@@ -543,7 +753,7 @@ const SportsbookPage = () => {
               {sports.map(sport => (
                 <button
                   key={sport.key}
-                  onClick={() => setActiveSport(sport.key)}
+                  onClick={() => handleSportChange(sport.key)}
                   className={`flex items-center space-x-2 px-4 py-3 rounded-lg font-semibold text-sm transition-all whitespace-nowrap ${
                     activeSport === sport.key 
                       ? 'bg-primary-yellow text-gray-900 shadow-lg' 
@@ -581,7 +791,7 @@ const SportsbookPage = () => {
             <div className="flex items-center space-x-4">
               <FaFilter className="text-gray-400 text-lg" />
               <span className="font-semibold text-white">Filter</span>
-              <ProviderDropdown providers={sportsProviders} selected={selectedProvider} onSelect={setSelectedProvider} />
+              <ProviderDropdown providers={sportsProviders} selected={selectedProvider} onSelect={handleProviderChange} />
             </div>
             <div className="flex items-center space-x-4">
               <FaSort className="text-gray-400 text-lg" />
@@ -599,13 +809,13 @@ const SportsbookPage = () => {
                   {sports.find(s => s.key === activeSport)?.icon}
                   <span className="ml-2">{sports.find(s => s.key === activeSport)?.label} Events</span>
                 </h3>
-                <span className="text-gray-400 text-sm">{filteredEvents.length} events</span>
+                <span className="text-gray-400 text-sm">{allFilteredEvents.length} events</span>
               </div>
             </div>
 
             {/* Events List */}
             <div className="divide-y divide-gray-700">
-              {filteredEvents.map((event, idx) => (
+              {paginatedEvents.map((event: SportEvent, idx: number) => (
                 <div key={idx} className="px-6 py-4 hover:bg-gray-700/30 transition-colors">
                   <div className="flex items-center justify-between">
                     {/* Event Info */}
@@ -725,13 +935,84 @@ const SportsbookPage = () => {
               ))}
             </div>
 
-            {filteredEvents.length === 0 && (
+            {allFilteredEvents.length === 0 && (
               <div className="text-center py-12">
                 <div className="text-gray-400 text-lg mb-2">No events found</div>
                 <div className="text-gray-500 text-sm">Try adjusting your search or check back later</div>
               </div>
             )}
           </div>
+
+          {/* Pagination Controls */}
+          {allFilteredEvents.length > 0 && (
+            <div className="flex items-center justify-between mt-6 p-4 bg-gray-800/40 rounded-lg border border-gray-700">
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-400 text-sm">Show:</span>
+                <select
+                  value={pageSize}
+                  onChange={(e) => {
+                    setPageSize(Number(e.target.value));
+                    setCurrentPage(1);
+                  }}
+                  className="bg-gray-900 text-white px-3 py-1 rounded border border-gray-600 text-sm"
+                >
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={50}>50</option>
+                </select>
+                <span className="text-gray-400 text-sm">
+                  Showing {startIndex + 1}-{Math.min(endIndex, allFilteredEvents.length)} of {allFilteredEvents.length} events
+                </span>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1 bg-gray-900 text-white rounded border border-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700 transition text-sm"
+                >
+                  Previous
+                </button>
+                
+                <div className="flex items-center space-x-1">
+                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                    let pageNumber;
+                    if (totalPages <= 5) {
+                      pageNumber = i + 1;
+                    } else if (currentPage <= 3) {
+                      pageNumber = i + 1;
+                    } else if (currentPage >= totalPages - 2) {
+                      pageNumber = totalPages - 4 + i;
+                    } else {
+                      pageNumber = currentPage - 2 + i;
+                    }
+                    
+                    return (
+                      <button
+                        key={pageNumber}
+                        onClick={() => setCurrentPage(pageNumber)}
+                        className={`px-3 py-1 rounded text-sm transition ${
+                          currentPage === pageNumber
+                            ? 'bg-primary-yellow text-gray-900 font-bold'
+                            : 'bg-gray-900 text-white border border-gray-600 hover:bg-gray-700'
+                        }`}
+                      >
+                        {pageNumber}
+                      </button>
+                    );
+                  })}
+                </div>
+                
+                <button
+                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1 bg-gray-900 text-white rounded border border-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700 transition text-sm"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Bet Slip */}
