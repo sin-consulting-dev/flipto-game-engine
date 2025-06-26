@@ -18,32 +18,65 @@ const topLive = [
   { name: 'Mega Wheel', provider: 'Pragmatic Play Live', type: 'Game Show', rtp: '96.5%', tag: 'NEW', minBet: 0.5, maxBet: 2000, image: placeholder },
   { name: 'Baccarat Squeeze', provider: 'Ezugi', type: 'Baccarat', rtp: '98.9%', tag: '', minBet: 2, maxBet: 3000, image: placeholder },
   { name: 'Monopoly Live', provider: 'Evolution', type: 'Game Show', rtp: '96.2%', tag: '', minBet: 1, maxBet: 2500, image: placeholder },
+  { name: 'Dream Catcher', provider: 'Evolution', type: 'Game Show', rtp: '96.6%', tag: '', minBet: 0.2, maxBet: 1500, image: placeholder },
+  { name: 'Casino Holdem', provider: 'Ezugi', type: 'Poker', rtp: '97.8%', tag: '', minBet: 1, maxBet: 2000, image: placeholder },
+  { name: 'Super Sic Bo', provider: 'Pragmatic Play Live', type: 'Dice', rtp: '97.2%', tag: 'NEW', minBet: 0.5, maxBet: 1000, image: placeholder },
+  { name: 'Football Studio', provider: 'Evolution', type: 'Game Show', rtp: '96.2%', tag: '', minBet: 1, maxBet: 1000, image: placeholder },
+  { name: 'Andar Bahar', provider: 'Ezugi', type: 'Card', rtp: '97.0%', tag: '', minBet: 1, maxBet: 1200, image: placeholder },
 ];
 
 const blackjackTables = [
   { name: 'Blackjack Classic', provider: 'Evolution', type: 'Blackjack', rtp: '99.3%', tag: 'LIVE', minBet: 5, maxBet: 1000, image: placeholder },
   { name: 'Speed Blackjack', provider: 'Pragmatic Play Live', type: 'Blackjack', rtp: '99.2%', tag: '', minBet: 10, maxBet: 2000, image: placeholder },
   { name: 'VIP Blackjack', provider: 'Playtech Live', type: 'Blackjack', rtp: '99.4%', tag: 'VIP', minBet: 50, maxBet: 10000, image: placeholder },
+  { name: 'Infinite Blackjack', provider: 'Evolution', type: 'Blackjack', rtp: '99.5%', tag: '', minBet: 1, maxBet: 5000, image: placeholder },
+  { name: 'Free Bet Blackjack', provider: 'Evolution', type: 'Blackjack', rtp: '98.5%', tag: '', minBet: 2, maxBet: 3000, image: placeholder },
+  { name: 'Power Blackjack', provider: 'Evolution', type: 'Blackjack', rtp: '98.8%', tag: '', minBet: 5, maxBet: 4000, image: placeholder },
+  { name: 'Blackjack Azure', provider: 'Pragmatic Play Live', type: 'Blackjack', rtp: '99.3%', tag: '', minBet: 10, maxBet: 2500, image: placeholder },
+  { name: 'Soho Blackjack', provider: 'Ezugi', type: 'Blackjack', rtp: '98.9%', tag: '', minBet: 5, maxBet: 2000, image: placeholder },
+  { name: 'Grand Blackjack', provider: 'Playtech Live', type: 'Blackjack', rtp: '99.1%', tag: '', minBet: 20, maxBet: 8000, image: placeholder },
 ];
 
 const rouletteTables = [
   { name: 'Immersive Roulette', provider: 'Evolution', type: 'Roulette', rtp: '97.3%', tag: 'LIVE', minBet: 1, maxBet: 5000, image: placeholder },
   { name: 'Auto Roulette', provider: 'Ezugi', type: 'Roulette', rtp: '97.1%', tag: '', minBet: 0.5, maxBet: 1000, image: placeholder },
+  { name: 'Speed Roulette', provider: 'Evolution', type: 'Roulette', rtp: '97.2%', tag: '', minBet: 2, maxBet: 2000, image: placeholder },
+  { name: 'Double Ball Roulette', provider: 'Evolution', type: 'Roulette', rtp: '97.3%', tag: '', minBet: 1, maxBet: 3000, image: placeholder },
+  { name: 'Prestige Roulette', provider: 'Playtech Live', type: 'Roulette', rtp: '97.1%', tag: '', minBet: 5, maxBet: 4000, image: placeholder },
+  { name: 'VIP Roulette', provider: 'Ezugi', type: 'Roulette', rtp: '97.5%', tag: 'VIP', minBet: 10, maxBet: 10000, image: placeholder },
+  { name: 'French Roulette', provider: 'Evolution', type: 'Roulette', rtp: '97.4%', tag: '', minBet: 2, maxBet: 2500, image: placeholder },
 ];
 
 const baccaratTables = [
   { name: 'No Commission Baccarat', provider: 'Evolution', type: 'Baccarat', rtp: '98.8%', tag: '', minBet: 2, maxBet: 3000, image: placeholder },
   { name: 'Speed Baccarat', provider: 'Pragmatic Play Live', type: 'Baccarat', rtp: '98.9%', tag: 'NEW', minBet: 5, maxBet: 2000, image: placeholder },
+  { name: 'Baccarat Control Squeeze', provider: 'Evolution', type: 'Baccarat', rtp: '98.7%', tag: '', minBet: 10, maxBet: 4000, image: placeholder },
+  { name: 'Lightning Baccarat', provider: 'Evolution', type: 'Baccarat', rtp: '98.8%', tag: '', minBet: 2, maxBet: 3500, image: placeholder },
+  { name: 'Salon Prive Baccarat', provider: 'Evolution', type: 'Baccarat', rtp: '98.9%', tag: 'VIP', minBet: 100, maxBet: 20000, image: placeholder },
+  { name: 'Dragon Tiger', provider: 'Ezugi', type: 'Baccarat', rtp: '97.5%', tag: '', minBet: 1, maxBet: 1500, image: placeholder },
+  { name: 'Golden Wealth Baccarat', provider: 'Evolution', type: 'Baccarat', rtp: '98.6%', tag: '', minBet: 5, maxBet: 2500, image: placeholder },
 ];
 
 const gameShows = [
   { name: 'Crazy Time', provider: 'Evolution', type: 'Game Show', rtp: '96.1%', tag: 'HOT', minBet: 0.1, maxBet: 1000, image: placeholder },
   { name: 'Deal or No Deal', provider: 'Evolution', type: 'Game Show', rtp: '95.5%', tag: '', minBet: 0.5, maxBet: 2000, image: placeholder },
+  { name: 'Mega Ball', provider: 'Evolution', type: 'Game Show', rtp: '95.4%', tag: '', minBet: 0.2, maxBet: 1500, image: placeholder },
+  { name: 'Monopoly Live', provider: 'Evolution', type: 'Game Show', rtp: '96.2%', tag: '', minBet: 1, maxBet: 2500, image: placeholder },
+  { name: 'Football Studio', provider: 'Evolution', type: 'Game Show', rtp: '96.2%', tag: '', minBet: 1, maxBet: 1000, image: placeholder },
+  { name: 'Dream Catcher', provider: 'Evolution', type: 'Game Show', rtp: '96.6%', tag: '', minBet: 0.2, maxBet: 1500, image: placeholder },
+  { name: 'Cash or Crash', provider: 'Evolution', type: 'Game Show', rtp: '96.8%', tag: 'NEW', minBet: 0.5, maxBet: 1200, image: placeholder },
+  { name: 'Adventures Beyond Wonderland', provider: 'Playtech Live', type: 'Game Show', rtp: '96.7%', tag: '', minBet: 0.5, maxBet: 2000, image: placeholder },
 ];
 
 const newLiveGames = [
   { name: 'PowerUP Roulette', provider: 'Playtech Live', type: 'Roulette', rtp: '97.2%', tag: 'NEW', minBet: 1, maxBet: 4000, image: placeholder },
   { name: 'ONE Blackjack', provider: 'Pragmatic Play Live', type: 'Blackjack', rtp: '99.1%', tag: '', minBet: 5, maxBet: 1500, image: placeholder },
+  { name: 'Peek Baccarat', provider: 'Evolution', type: 'Baccarat', rtp: '98.7%', tag: 'NEW', minBet: 10, maxBet: 3000, image: placeholder },
+  { name: 'Boom City', provider: 'Pragmatic Play Live', type: 'Game Show', rtp: '96.4%', tag: 'NEW', minBet: 0.5, maxBet: 2000, image: placeholder },
+  { name: 'Buffalo Blitz Live', provider: 'Playtech Live', type: 'Slots', rtp: '96.5%', tag: '', minBet: 1, maxBet: 2500, image: placeholder },
+  { name: 'Mega Sic Bo', provider: 'Pragmatic Play Live', type: 'Dice', rtp: '97.2%', tag: '', minBet: 0.5, maxBet: 1000, image: placeholder },
+  { name: 'All Bets Blackjack', provider: 'Playtech Live', type: 'Blackjack', rtp: '99.0%', tag: '', minBet: 10, maxBet: 3000, image: placeholder },
+  { name: 'Quantum Roulette', provider: 'Playtech Live', type: 'Roulette', rtp: '97.3%', tag: '', minBet: 2, maxBet: 3500, image: placeholder },
 ];
 
 const LiveCard = ({ game }: { game: typeof topLive[0] }) => (
@@ -139,10 +172,10 @@ const Section = ({ title, games, viewAllHref }: { title: string; games: any[]; v
       <h2 className="text-2xl font-bold text-white tracking-tight">{title}</h2>
       <a href={viewAllHref || '#'} className="text-primary-yellow hover:underline text-sm font-semibold">View All</a>
     </div>
-    <div className="overflow-x-auto pb-2">
-      <div className="flex space-x-4">
+    <div className="pb-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {games.length === 0 ? (
-          <div className="text-gray-400 italic p-8">No games found for this provider.</div>
+          <div className="text-gray-400 italic p-8 col-span-full">No games found for this provider.</div>
         ) : (
           games.map(game => (
             <LiveCard key={game.name} game={game} />

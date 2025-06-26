@@ -156,10 +156,10 @@ const Section = ({ title, slots, viewAllHref }: { title: string; slots: any[]; v
       <h2 className="text-2xl font-bold text-white tracking-tight">{title}</h2>
       <a href={viewAllHref || '#'} className="text-primary-yellow hover:underline text-sm font-semibold">View All</a>
     </div>
-    <div className="overflow-x-auto pb-2">
-      <div className="flex space-x-4">
+    <div className="pb-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {slots.length === 0 ? (
-          <div className="text-gray-400 italic p-8">No games found for this provider.</div>
+          <div className="text-gray-400 italic p-8 col-span-full">No games found for this provider.</div>
         ) : (
           slots.map(slot => (
             <SlotCard key={slot.name} slot={slot} />
