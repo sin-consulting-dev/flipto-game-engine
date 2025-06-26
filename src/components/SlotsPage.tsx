@@ -309,11 +309,10 @@ const Section = ({ title, slots }: { title: string; slots: SlotGame[] }) => {
           {hasMoreGames && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center space-x-2 text-primary-yellow hover:text-yellow-400 transition-colors font-semibold group"
+              className="flex items-center justify-center w-10 h-10 text-primary-yellow hover:text-yellow-400 transition-colors group bg-gray-700/30 hover:bg-gray-600/50 rounded-lg border border-gray-600/50 hover:border-primary-yellow/30"
             >
-              <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
               <svg 
-                className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
+                className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
