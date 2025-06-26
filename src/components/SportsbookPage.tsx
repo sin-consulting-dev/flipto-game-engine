@@ -361,8 +361,7 @@ const SportsbookPage = () => {
   const filteredEvents = filterEvents(getCurrentEvents());
 
   return (
-    <div className="w-full min-w-0">
-      <main className="w-full overflow-y-auto bg-secondary-dark min-h-0 pt-20">
+    <main className="flex-1 overflow-y-auto bg-secondary-dark min-h-0 pt-20 w-full">
         {/* Featured Events Banner */}
         <div className="bg-gradient-to-r from-primary-yellow/10 to-gray-900/50 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -734,11 +733,10 @@ const SportsbookPage = () => {
             )}
           </div>
         </div>
-      </main>
 
-      {/* Bet Slip */}
-      <BetSlip betSlip={betSlip} setBetSlip={setBetSlip} />
-    </div>
+        {/* Bet Slip */}
+        <BetSlip betSlip={betSlip} setBetSlip={setBetSlip} />
+      </main>
   );
 };
 
