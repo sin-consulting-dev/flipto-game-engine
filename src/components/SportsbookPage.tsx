@@ -362,9 +362,9 @@ const SportsbookPage = () => {
 
   return (
     <div className="flex">
-      <main className="flex-1 p-8 overflow-y-auto bg-secondary-dark min-h-0 pt-20">
+      <main className="flex-1 p-0 overflow-y-auto bg-secondary-dark min-h-0 pt-20 w-full">
         {/* Featured Events Banner */}
-        <div className="bg-gradient-to-r from-primary-yellow/10 to-gray-900/50 p-6 mb-6 rounded-lg">
+        <div className="bg-gradient-to-r from-primary-yellow/10 to-gray-900/50 p-6 mb-6 mx-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold text-white flex items-center">
               <FaFire className="mr-2 text-primary-yellow" />
@@ -412,7 +412,7 @@ const SportsbookPage = () => {
         </div>
 
         {/* Stats Dashboard */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 mx-6">
           <div className="bg-gray-800/60 p-4 rounded-lg border border-gray-700">
             <div className="flex items-center justify-between">
               <div>
@@ -451,7 +451,7 @@ const SportsbookPage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 mx-6">
           {/* Live Scores */}
           <div className="bg-gray-800/60 rounded-lg p-4 border border-gray-700">
             <h3 className="text-white font-bold mb-4 flex items-center">
@@ -523,7 +523,7 @@ const SportsbookPage = () => {
           </div>
         </div>
 
-        <div>
+        <div className="mx-6">
           {/* Search Bar */}
           <div className="mb-6">
             <div className="flex items-center bg-gray-900 rounded-md px-4 py-3 border border-gray-700">
@@ -592,7 +592,7 @@ const SportsbookPage = () => {
           </div>
 
           {/* Events Table */}
-          <div className="bg-gray-800/60 rounded-lg overflow-hidden border border-gray-700">
+          <div className="bg-gray-800/60 overflow-hidden border border-gray-700">
             {/* Table Header */}
             <div className="bg-gray-900/80 px-6 py-4 border-b border-gray-700">
               <div className="flex items-center justify-between">
