@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { FaCrown } from 'react-icons/fa';
 
 const promoBanners = [
     {
@@ -66,7 +67,7 @@ const promoBanners = [
 
 const Hero = () => {
     return (
-        <section className="relative w-full rounded-lg overflow-hidden">
+        <section className="relative w-full rounded-3xl overflow-hidden mb-10">
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={0}
@@ -78,7 +79,7 @@ const Hero = () => {
                     delay: 5000,
                     disableOnInteraction: false,
                 }}
-                className="h-80"
+                className="h-[320px] md:h-[340px] lg:h-[360px]"
             >
                 {promoBanners.map((banner, index) => (
                     <SwiperSlide 
@@ -86,13 +87,23 @@ const Hero = () => {
                         style={{ backgroundImage: `url(${banner.imageUrl})` }}
                         className="bg-cover bg-center"
                     >
-                        <div className="absolute inset-0 bg-black/60"></div>
-                        <div className="relative h-full flex flex-col items-center justify-center text-center text-white p-8">
-                            <h2 className="text-4xl font-bold">{banner.title}</h2>
-                            <p className="mt-4 text-lg max-w-2xl">{banner.description}</p>
-                            <button className="mt-8 bg-primary-yellow text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-yellow-400 transition-colors">
-                                {banner.buttonText}
-                            </button>
+                        {/* Gradient overlay for readability */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-gray-900/70 to-primary-yellow/10" />
+                        <div className="relative h-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-8 py-8 md:py-0 z-10">
+                            {/* Left: Text content */}
+                            <div className="flex-1 flex flex-col justify-center md:justify-center md:items-start items-center text-white">
+                                <h2 className="text-3xl md:text-5xl font-bold mb-4 text-center md:text-left drop-shadow-lg">{banner.title}</h2>
+                                <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl text-center md:text-left drop-shadow-lg">{banner.description}</p>
+                                <button className="bg-primary-yellow text-gray-900 font-bold py-4 px-8 rounded-lg text-lg hover:bg-yellow-400 transition-all shadow-lg">
+                                    {banner.buttonText}
+                                </button>
+                            </div>
+                            {/* Right: Icon in yellow-tinted circle */}
+                            <div className="hidden md:flex items-center justify-center ml-8">
+                                <div className="w-48 h-48 rounded-full bg-primary-yellow/20 flex items-center justify-center shadow-xl">
+                                    <FaCrown className="text-[5rem] text-primary-yellow drop-shadow-lg" />
+                                </div>
+                            </div>
                         </div>
                     </SwiperSlide>
                 ))}
