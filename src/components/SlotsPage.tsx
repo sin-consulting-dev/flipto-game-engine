@@ -289,47 +289,82 @@ const SortDropdown = ({ options, selected, onSelect }: { options: string[], sele
   );
 };
 
-const Section = ({ title, slots, viewAllHref }: { title: string; slots: SlotGame[]; viewAllHref?: string }) => (
-  <div className="mb-12">
-    {/* Enhanced Section Header */}
-    <div className="bg-gradient-to-r from-gray-800/80 to-gray-900/60 rounded-xl p-6 mb-6 border border-gray-700/50 shadow-lg">
-      <div className="flex justify-between items-center">
-        <div className="flex items-center space-x-4">
-          <div className="w-1 h-8 bg-primary-yellow rounded-full"></div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">{title}</h2>
-          <span className="bg-primary-yellow/20 text-primary-yellow px-3 py-1 rounded-full text-sm font-semibold">
-            {slots.length} games
-          </span>
-        </div>
-        <a 
-          href={viewAllHref || '#'} 
-          className="flex items-center space-x-2 text-primary-yellow hover:text-yellow-400 transition-colors font-semibold group"
-        >
-          <span>View All</span>
-          <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-    </div>
-    
-    {/* Games Grid */}
-    <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700/30">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {slots.length === 0 ? (
-          <div className="col-span-full text-center py-12">
-            <div className="text-gray-400 text-lg mb-2">No games found</div>
-            <div className="text-gray-500 text-sm">Try adjusting your search or filter settings</div>
+const Section = ({ title, slots }: { title: string; slots: SlotGame[] }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const displayedSlots = isExpanded ? slots : slots.slice(0, 10);
+  const hasMoreGames = slots.length > 10;
+
+  return (
+    <div className="mb-12">
+      {/* Enhanced Section Header */}
+      <div className="bg-gradient-to-r from-gray-800/80 to-gray-900/60 rounded-xl p-6 mb-6 border border-gray-700/50 shadow-lg">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className="w-1 h-8 bg-primary-yellow rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white tracking-tight">{title}</h2>
+            <span className="bg-primary-yellow/20 text-primary-yellow px-3 py-1 rounded-full text-sm font-semibold">
+              {slots.length} games
+            </span>
           </div>
-        ) : (
-          slots.map(slot => (
-            <SlotCard key={slot.name} slot={slot} />
-          ))
+          {hasMoreGames && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="flex items-center space-x-2 text-primary-yellow hover:text-yellow-400 transition-colors font-semibold group"
+            >
+              <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+      
+      {/* Games Grid */}
+      <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700/30">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {slots.length === 0 ? (
+            <div className="col-span-full text-center py-12">
+              <div className="text-gray-400 text-lg mb-2">No games found</div>
+              <div className="text-gray-500 text-sm">Try adjusting your search or filter settings</div>
+            </div>
+          ) : (
+            displayedSlots.map(slot => (
+              <SlotCard key={slot.name} slot={slot} />
+            ))
+          )}
+        </div>
+        
+        {/* Show More/Less Button at Bottom */}
+        {hasMoreGames && (
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="flex items-center space-x-2 bg-gray-700/50 hover:bg-gray-600/50 text-primary-yellow hover:text-yellow-400 transition-all px-6 py-3 rounded-lg border border-gray-600/50 hover:border-primary-yellow/30 group"
+            >
+              <span className="font-semibold">
+                {isExpanded ? `Hide ${slots.length - 10} games` : `Show ${slots.length - 10} more games`}
+              </span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
         )}
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const SlotsPage = () => {
   const [selectedProvider, setSelectedProvider] = useState('All Providers');
