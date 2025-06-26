@@ -205,24 +205,29 @@ const dropsWins = [
 ];
 
 const SlotCard = ({ slot }: { slot: typeof allSlots[0] }) => (
-  <div className="relative rounded-lg overflow-hidden bg-gray-800/60 group shadow-md">
+  <div className="relative rounded-xl overflow-hidden bg-gray-800/80 group shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-700/50 hover:border-primary-yellow/30">
     <div className="relative aspect-[3/2] bg-gray-700 flex items-center justify-center">
       <img src={slot.image} alt={slot.name} className="w-full h-full object-cover" />
       {slot.tag && (
-        <span className="absolute top-2 left-2 bg-primary-yellow text-gray-900 text-xs font-bold px-2 py-1 rounded">
+        <span className="absolute top-3 left-3 bg-primary-yellow text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-md">
           {slot.tag}
         </span>
       )}
-      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300"></div>
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-        <button className="bg-primary-yellow text-gray-900 font-bold py-2 px-4 rounded shadow-lg">Play</button>
+      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300"></div>
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
+        <button className="bg-primary-yellow text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-400 transform hover:scale-105 transition-all">
+          Play Now
+        </button>
       </div>
     </div>
-    <div className="p-3">
-      <h4 className="font-bold truncate whitespace-nowrap text-white">{slot.name}</h4>
-      <div className="flex justify-between items-center mt-1">
-        <span className="text-xs text-gray-400">RTP: {slot.rtp}</span>
-        <span className="text-xs text-gray-400">{slot.provider}</span>
+    <div className="p-4 bg-gradient-to-b from-gray-800/90 to-gray-900/90">
+      <h4 className="font-bold text-white mb-2 truncate" title={slot.name}>{slot.name}</h4>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-1">
+          <span className="text-xs text-primary-yellow font-semibold">RTP:</span>
+          <span className="text-xs text-white font-medium">{slot.rtp}</span>
+        </div>
+        <span className="text-xs text-gray-400 bg-gray-700/50 px-2 py-1 rounded-md">{slot.provider}</span>
       </div>
     </div>
   </div>
@@ -285,15 +290,37 @@ const SortDropdown = ({ options, selected, onSelect }: { options: string[], sele
 };
 
 const Section = ({ title, slots, viewAllHref }: { title: string; slots: SlotGame[]; viewAllHref?: string }) => (
-  <div className="mb-8">
-    <div className="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
-      <h2 className="text-2xl font-bold text-white tracking-tight">{title}</h2>
-      <a href={viewAllHref || '#'} className="text-primary-yellow hover:underline text-sm font-semibold">View All</a>
+  <div className="mb-12">
+    {/* Enhanced Section Header */}
+    <div className="bg-gradient-to-r from-gray-800/80 to-gray-900/60 rounded-xl p-6 mb-6 border border-gray-700/50 shadow-lg">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-4">
+          <div className="w-1 h-8 bg-primary-yellow rounded-full"></div>
+          <h2 className="text-3xl font-bold text-white tracking-tight">{title}</h2>
+          <span className="bg-primary-yellow/20 text-primary-yellow px-3 py-1 rounded-full text-sm font-semibold">
+            {slots.length} games
+          </span>
+        </div>
+        <a 
+          href={viewAllHref || '#'} 
+          className="flex items-center space-x-2 text-primary-yellow hover:text-yellow-400 transition-colors font-semibold group"
+        >
+          <span>View All</span>
+          <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
     </div>
-    <div className="pb-2">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+    
+    {/* Games Grid */}
+    <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700/30">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {slots.length === 0 ? (
-          <div className="text-gray-400 italic p-8 col-span-full">No games found for this provider.</div>
+          <div className="col-span-full text-center py-12">
+            <div className="text-gray-400 text-lg mb-2">No games found</div>
+            <div className="text-gray-500 text-sm">Try adjusting your search or filter settings</div>
+          </div>
         ) : (
           slots.map(slot => (
             <SlotCard key={slot.name} slot={slot} />
@@ -359,13 +386,15 @@ const SlotsPage = () => {
           <SortDropdown options={sortOptions} selected={sort} onSelect={setSort} />
         </div>
       </div>
-      {/* Main Sections with clean separation */}
-      <Section title="Top Slots" slots={filterGames(allSlots)} />
-      <Section title="Bonus Buy" slots={filterGames(bonusBuy)} />
-      <Section title="New Slots" slots={filterGames(newSlots)} />
-      <Section title="Crash Games" slots={filterGames(crashGames)} />
-      <Section title="Card & Table" slots={filterGames(tableGames)} />
-      <Section title="Drops & Wins" slots={filterGames(dropsWins)} />
+      {/* Main Sections with enhanced visual separation */}
+      <div className="space-y-8">
+        <Section title="🔥 Top Slots" slots={filterGames(allSlots)} />
+        <Section title="💰 Bonus Buy" slots={filterGames(bonusBuy)} />
+        <Section title="✨ New Slots" slots={filterGames(newSlots)} />
+        <Section title="🚀 Crash Games" slots={filterGames(crashGames)} />
+        <Section title="🃏 Card & Table" slots={filterGames(tableGames)} />
+        <Section title="🎁 Drops & Wins" slots={filterGames(dropsWins)} />
+      </div>
     </main>
   );
 };
