@@ -1,4 +1,3 @@
-import React from 'react';
 import PlinkoIcon from './icons/PlinkoIcon';
 import CrashIcon from './icons/CrashIcon';
 import DiceIcon from './icons/DiceIcon';

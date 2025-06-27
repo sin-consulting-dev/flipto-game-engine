@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaTwitter, FaDiscord, FaTelegram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 

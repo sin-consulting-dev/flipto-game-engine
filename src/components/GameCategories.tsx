@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaFire, FaDice, FaStar, FaUserFriends, FaFutbol, FaRocket, FaCrown } from 'react-icons/fa';
 import GameList from './GameList';
 

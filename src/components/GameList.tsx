@@ -1,4 +1,3 @@
-import React from 'react';
 import placeholder from '../assets/placeholder.svg';
 
 interface Game {
