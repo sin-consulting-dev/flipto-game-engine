@@ -147,7 +147,7 @@ const TransactionHistoryPage: React.FC = () => {
         </select>
         <span className="text-sm text-gray-300 ml-2">entries</span>
       </div>
-      <div className="w-full h-full bg-secondary-dark/80 rounded-2xl shadow-xl border border-border-color overflow-x-auto pb-8">
+      <div className="w-full h-full bg-secondary-dark/80 rounded-2xl shadow-xl border border-border-color overflow-x-auto">
         <table className="w-full table-fixed text-sm text-left rounded-2xl overflow-hidden">
           <colgroup>
             <col className="w-[110px] min-w-[80px]" /> {/* Category */}
@@ -191,7 +191,7 @@ const TransactionHistoryPage: React.FC = () => {
               </tr>
             ) : (
               paginatedData.map((row, idx) => (
-                <tr key={row.betId + idx} className="hover:bg-primary-yellow/10 transition-colors border-b border-border-color last:border-0">
+                <tr key={row.betId + idx} className={`hover:bg-primary-yellow/10 transition-colors border-b border-border-color ${idx === paginatedData.length - 1 ? 'last:border-b-0' : ''}`}>
                   {columns.map((col) => (
                     <td key={col.key} className="px-3 py-2 whitespace-nowrap text-gray-200 truncate max-w-[120px]">
                       {col.key === 'status' ? (
@@ -212,30 +212,35 @@ const TransactionHistoryPage: React.FC = () => {
               ))
             )}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={columns.length + 1} className="p-0">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between px-4 py-4 bg-primary-dark/80 border-t border-border-color rounded-b-2xl">
+                  <div className="text-sm text-gray-400 mb-2 md:mb-0">
+                    Showing {filteredData.length === 0 ? 0 : (page - 1) * pageSize + 1} to {Math.min(page * pageSize, filteredData.length)} of {filteredData.length} entries
+                  </div>
+                  <div className="flex gap-2 md:ml-auto md:justify-end w-full md:w-auto">
+                    <button
+                      onClick={() => setPage((p) => Math.max(1, p - 1))}
+                      disabled={page === 1}
+                      className="px-4 py-1 rounded bg-gray-800 border border-border-color text-primary-yellow font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-yellow/10 transition"
+                    >
+                      Previous
+                    </button>
+                    <span className="px-2 text-sm text-gray-300">Page {page} of {pageCount}</span>
+                    <button
+                      onClick={() => setPage((p) => Math.min(pageCount, p + 1))}
+                      disabled={page === pageCount}
+                      className="px-4 py-1 rounded bg-gray-800 border border-border-color text-primary-yellow font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-yellow/10 transition"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
         </table>
-        {/* Pagination */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between px-4 py-4 bg-primary-dark/80 border-t border-border-color rounded-b-2xl">
-          <div className="text-sm text-gray-400 mb-2 md:mb-0">
-            Showing {filteredData.length === 0 ? 0 : (page - 1) * pageSize + 1} to {Math.min(page * pageSize, filteredData.length)} of {filteredData.length} entries
-          </div>
-          <div className="flex gap-2 md:ml-auto md:justify-end w-full md:w-auto">
-            <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              disabled={page === 1}
-              className="px-4 py-1 rounded bg-gray-800 border border-border-color text-primary-yellow font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-yellow/10 transition"
-            >
-              Previous
-            </button>
-            <span className="px-2 text-sm text-gray-300">Page {page} of {pageCount}</span>
-            <button
-              onClick={() => setPage((p) => Math.min(pageCount, p + 1))}
-              disabled={page === pageCount}
-              className="px-4 py-1 rounded bg-gray-800 border border-border-color text-primary-yellow font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-yellow/10 transition"
-            >
-              Next
-            </button>
-          </div>
-        </div>
       </div>
     </main>
   );
