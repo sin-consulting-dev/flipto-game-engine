@@ -73,9 +73,9 @@ const Header = () => {
                 <a href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-primary-dark">
                   Profile Detail
                 </a>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-primary-dark">
+                <Link to="/transaction-history" className="block px-4 py-2 text-sm text-gray-300 hover:bg-primary-dark">
                   Transaction History
-                </a>
+                </Link>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-primary-dark">
                   Logout
                 </a>

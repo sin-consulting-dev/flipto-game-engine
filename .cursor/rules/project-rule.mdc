@@ -1,0 +1,25 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Every success action and when any code is updated, do this :
+
+1. Check if there is ESLint error
+    - if there is any error : fix it
+    - if there is no error : continue to next step
+
+2. Check any unused variable, function, and package library.
+    - Check if the unused variable, function or package library is safe to remove, then remove it
+    - Check if there is any error on each page after removing the variable, function, or package library
+    - If no error : continue to next step
+    - If there is any error : fix it
+
+3. If point number 1 and 2 all complete, commit and push the update to the git repository.
+
+4. Update the README.md accordingly, this is what you shold update
+    - The general README.md document
+    - The commit detail such as timestamp of commit, id commit, and summary in 1 line what is the commit for every commit and push update in the git (if this part not exist, create it. And if this part exist, update it)
+
+
+5. Update in the chat log the summary of point 1 to 5 to me.

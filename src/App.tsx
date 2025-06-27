@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import LiveCasinoPage from './components/LiveCasinoPage'
 import SportsbookPage from './components/SportsbookPage'
 import VIPPage from './components/VIPPage'
+import TransactionHistoryPage from './components/TransactionHistoryPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/live-casino" element={<LiveCasinoPage />} />
             <Route path="/sports" element={<SportsbookPage />} />
             <Route path="/vip" element={<VIPPage />} />
+            <Route path="/transaction-history" element={<TransactionHistoryPage />} />
             <Route path="/*" element={<MainContent />} />
           </Routes>
         </div>
