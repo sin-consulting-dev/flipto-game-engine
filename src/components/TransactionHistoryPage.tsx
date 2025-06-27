@@ -147,7 +147,7 @@ const TransactionHistoryPage: React.FC = () => {
         </select>
         <span className="text-sm text-gray-300 ml-2">entries</span>
       </div>
-      <div className="w-full h-full bg-secondary-dark/80 rounded-2xl shadow-xl border border-border-color overflow-x-auto">
+      <div className="w-full bg-secondary-dark/80 rounded-2xl shadow-xl border border-border-color overflow-x-auto">
         <table className="w-full table-fixed text-sm text-left rounded-2xl overflow-hidden">
           <colgroup>
             <col className="w-[110px] min-w-[80px]" /> {/* Category */}
