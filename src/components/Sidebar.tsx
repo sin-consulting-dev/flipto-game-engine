@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
-import { Home, Shield, Star, Users as UsersIcon, Gift } from 'lucide-react';
+import { Star, Users as UsersIcon, Dice5, Crown, MonitorPlay } from 'lucide-react';
+import { FaFutbol } from 'react-icons/fa';
 
 const initialMessages = [
     { user: 'CryptoCat', message: 'Let\'s gooo!' },
@@ -64,24 +65,28 @@ const Sidebar = () => {
                 <h2 className="text-xl font-bold text-primary-yellow mb-4">Quick Access</h2>
                 <nav className="space-y-2">
                     <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
-                        <Home size={20} className="mr-3 text-primary-yellow" />
-                        <span>Home</span>
+                        <Dice5 size={20} className="mr-3 text-primary-yellow" />
+                        <span>Originals</span>
                     </a>
                     <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
-                        <Shield size={20} className="mr-3 text-primary-yellow" />
-                        <span>Fairness</span>
+                        <MonitorPlay size={20} className="mr-3 text-primary-yellow" />
+                        <span>Slots</span>
+                    </a>
+                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                        <UsersIcon size={20} className="mr-3 text-primary-yellow" />
+                        <span>Live Casino</span>
+                    </a>
+                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                        <FaFutbol size={20} className="mr-3 text-primary-yellow" />
+                        <span>Sports</span>
                     </a>
                     <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
                         <Star size={20} className="mr-3 text-primary-yellow" />
                         <span>Promotions</span>
                     </a>
                     <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
-                        <UsersIcon size={20} className="mr-3 text-primary-yellow" />
-                        <span>Affiliate</span>
-                    </a>
-                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
-                        <Gift size={20} className="mr-3 text-primary-yellow" />
-                        <span>Rewards</span>
+                        <Crown size={20} className="mr-3 text-primary-yellow" />
+                        <span>VIP</span>
                     </a>
                 </nav>
             </div>
