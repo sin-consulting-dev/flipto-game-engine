@@ -111,6 +111,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Commit Log
 
+- **2024-12-19** | `20eb031` | fix: table container border always follows end of table content in TransactionHistoryPage | The border now always appears directly after the last row and pagination, regardless of the number of rows shown.
 - **2024-12-19** | `e3acc43` | fix: table border and gap in TransactionHistoryPage, move pagination to tfoot for seamless design | Table border now always follows the last data row, and the gap below the table is removed for a seamless look.
 - **2024-12-19** | `5b41edf` | Fix unused React imports and add Swiper CSS type declarations | Removed unused React imports from 17 files and added type declarations for Swiper CSS modules to resolve TypeScript build errors.
 - **2024-06-09** | `feat: add page size selector (10/20/50) to TransactionHistoryPage pagination` | Users can now select how many transactions to view per page (10, 20, or 50) in TransactionHistoryPage.
