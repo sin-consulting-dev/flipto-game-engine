@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import { Star, Users as UsersIcon, Dice5, Crown, MonitorPlay } from 'lucide-react';
 import { FaFutbol } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const initialMessages = [
     { user: 'CryptoCat', message: 'Let\'s gooo!' },
@@ -64,30 +65,30 @@ const Sidebar = () => {
             <div>
                 <h2 className="text-xl font-bold text-primary-yellow mb-4">Quick Access</h2>
                 <nav className="space-y-2">
-                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                    <Link to="/" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
                         <Dice5 size={20} className="mr-3 text-primary-yellow" />
                         <span>Originals</span>
-                    </a>
-                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                    </Link>
+                    <Link to="/slots" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
                         <MonitorPlay size={20} className="mr-3 text-primary-yellow" />
                         <span>Slots</span>
-                    </a>
-                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                    </Link>
+                    <Link to="/live-casino" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
                         <UsersIcon size={20} className="mr-3 text-primary-yellow" />
                         <span>Live Casino</span>
-                    </a>
-                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                    </Link>
+                    <Link to="/sports" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
                         <FaFutbol size={20} className="mr-3 text-primary-yellow" />
                         <span>Sports</span>
-                    </a>
-                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                    </Link>
+                    <Link to="/promotions" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
                         <Star size={20} className="mr-3 text-primary-yellow" />
                         <span>Promotions</span>
-                    </a>
-                    <a href="#" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
+                    </Link>
+                    <Link to="/vip" className="flex items-center p-2 text-gray-300 hover:bg-secondary-dark/80 rounded-md transition-colors duration-200">
                         <Crown size={20} className="mr-3 text-primary-yellow" />
                         <span>VIP</span>
-                    </a>
+                    </Link>
                 </nav>
             </div>
             <div className="bg-secondary-dark/60 p-4 flex flex-col rounded-lg flex-1 min-h-0">

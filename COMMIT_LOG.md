@@ -3,9 +3,14 @@
 ## Recent Commits (Last 24 Hours)
 
 ### Documentation & Project Rules
-- **5532ff7** (just now) - docs: Add comprehensive commit log documentation and changelog
-- **ce5ebe4** (35 seconds ago) - Code cleanup and optimization: Verified no ESLint errors, confirmed all dependencies are in use, and ensured code quality standards
-- **5648a79** (3 minutes ago) - refactor: update Sidebar Quick Access to casino-relevant links and fix unused imports
+- **6506deb** (just now) - chore: Remove quick-rules.mdc file as requested
+- **b8141e5** (earlier) - docs: Update project rules with comprehensive workflow and commit log maintenance
+- **5532ff7** (earlier) - docs: Add comprehensive commit log documentation and changelog
+
+### Code Quality & Navigation
+- **NEW_HASH** (now) - fix: Add navigation links to Sidebar Quick Access using react-router-dom Link, matching Header navigation
+- **ce5ebe4** (earlier) - Code cleanup and optimization: Verified no ESLint errors, confirmed all dependencies are in use, and ensured code quality standards
+- **5648a79** (earlier) - refactor: update Sidebar Quick Access to casino-relevant links and fix unused imports
 
 ### Documentation Updates
 - **aa5b339** (11 minutes ago) - docs: update README.md with latest git pull operation details
