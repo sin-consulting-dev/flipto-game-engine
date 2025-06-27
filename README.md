@@ -108,15 +108,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Styling with [Tailwind CSS](https://tailwindcss.com/)
 
 ---
-
-## Commit Log
-
-- **2024-12-19** | `7455ccc` | git pull: Updated 19 files with 299 insertions and 77 deletions, added TransactionHistoryPage component | Successfully pulled latest changes including new TransactionHistoryPage component and various icon updates.
-- **2024-12-19** | `20eb031` | fix: table container border always follows end of table content in TransactionHistoryPage | The border now always appears directly after the last row and pagination, regardless of the number of rows shown.
-- **2024-12-19** | `e3acc43` | fix: table border and gap in TransactionHistoryPage, move pagination to tfoot for seamless design | Table border now always follows the last data row, and the gap below the table is removed for a seamless look.
-- **2024-12-19** | `5b41edf` | Fix unused React imports and add Swiper CSS type declarations | Removed unused React imports from 17 files and added type declarations for Swiper CSS modules to resolve TypeScript build errors.
-- **2024-06-09** | `feat: add page size selector (10/20/50) to TransactionHistoryPage pagination` | Users can now select how many transactions to view per page (10, 20, or 50) in TransactionHistoryPage.
-- **2024-06-09** | `style: add Flipto hero banner above Transaction History title, matching SlotsPage/LiveCasinoPage` | TransactionHistoryPage now features a Flipto-style hero banner above the title, consistent with SlotsPage and LiveCasinoPage.
-- **2024-06-09** | `style: update TransactionHistoryPage to Flipto design, proportional table, and 30 mock data entries` | TransactionHistoryPage now uses Flipto design, fills the available space, and displays 30 mock transactions.
-- **2024-06-09** | `feat: enable navigation to TransactionHistoryPage from profile dropdown and add route` | TransactionHistoryPage is now accessible from the profile dropdown menu and routed in the app.
-- **2024-06-09** | `feat: add TransactionHistoryPage with mock data, filters, and pagination` | Added a new TransactionHistoryPage component for user betting history, featuring a comprehensive, filterable, and paginated table with mock data. Accessible only via the user profile page.
