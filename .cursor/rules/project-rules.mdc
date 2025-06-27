@@ -97,7 +97,7 @@ alwaysApply: true
 ### Commit Log Maintenance
 - Keep `COMMIT_LOG.md` updated with latest commits
 - Categorize commits appropriately (Code Quality, Bug Fixes, Features, etc.)
-- Include commit hashes and timestamps
+- Include commit hashes and timestamps (timestamps must be shown in **GMT+7** timezone, not relative times like '3 minutes ago')
 - Maintain chronological order
 
 ### Changelog Standards
