@@ -1,5 +1,192 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Flipto Game Engine - Project Rules
+
+## Code Quality & Maintenance Workflow
+
+### Every Success Action and Code Update Must Follow This Complete Workflow:
+
+#### 1. **ESLint Error Check** ✅
+- **Action**: Run `npm run lint` to check for ESLint errors
+- **If errors found**: Fix all ESLint errors before proceeding
+- **If no errors**: Continue to next step
+- **Command**: `npm run lint`
+
+#### 2. **Unused Code & Dependencies Check** ✅
+- **Action**: Check for unused variables, functions, and package libraries
+- **Process**:
+  - Identify unused imports, variables, or functions
+  - Verify if removal is safe (no breaking changes)
+  - Remove unused code if safe to do so
+  - Test each page/component after removal
+  - If errors occur after removal: fix them immediately
+  - If no errors: continue to next step
+- **Commands**: 
+  - `npm run build` (to check for TypeScript warnings)
+  - Manual review of imports and variables
+
+#### 3. **Commit Log Maintenance** ✅
+- **Action**: Update commit log documentation after any code changes
+- **Process**:
+  - Update `COMMIT_LOG.md` with new commit details
+  - Update `CHANGELOG.md` if version changes or significant features added
+  - Ensure commit messages follow conventional format
+  - Verify all documentation is current and accurate
+- **Files to update**:
+  - `COMMIT_LOG.md` - Add new commits to appropriate categories
+  - `CHANGELOG.md` - Update version history if needed
+  - `README.md` - Update if project structure changes
+
+#### 4. **Git Commit & Push** ✅
+- **Action**: Commit and push all changes to repository
+- **Process**:
+  - Stage all changes: `git add .`
+  - Create descriptive commit message following conventional format
+  - Commit changes: `git commit -m "type: descriptive message"`
+  - Push to remote: `git push`
+- **Commit Message Format**:
+  - `feat:` New features
+  - `fix:` Bug fixes
+  - `docs:` Documentation changes
+  - `style:` Code style changes
+  - `refactor:` Code refactoring
+  - `test:` Adding or updating tests
+  - `chore:` Maintenance tasks
+
+#### 5. **Workflow Summary Report** ✅
+- **Action**: Provide summary of completed steps in chat
+- **Include**:
+  - ESLint status (errors found/fixed or clean)
+  - Unused code status (removed or none found)
+  - Commit log update status
+  - Git commit/push status
+  - Overall workflow completion status
+
+---
+
+## Code Quality Standards
+
+### ESLint Compliance
+- All code must pass ESLint checks
+- No warnings or errors allowed
+- Follow project's ESLint configuration
+
+### TypeScript Standards
+- All files must be properly typed
+- No `any` types unless absolutely necessary
+- Proper interface and type definitions
+
+### Import Optimization
+- Remove unused imports immediately
+- Use specific imports over wildcard imports
+- Maintain clean import statements
+
+### Component Standards
+- Follow React functional component patterns
+- Use proper TypeScript interfaces for props
+- Implement proper error handling
+- Maintain consistent naming conventions
+
+---
+
+## Documentation Standards
+
+### Commit Log Maintenance
+- Keep `COMMIT_LOG.md` updated with latest commits
+- Categorize commits appropriately (Code Quality, Bug Fixes, Features, etc.)
+- Include commit hashes and timestamps
+- Maintain chronological order
+
+### Changelog Standards
+- Follow "Keep a Changelog" format
+- Update version numbers appropriately
+- Categorize changes (Added, Changed, Fixed, Technical)
+- Include breaking changes if any
+
+### README Updates
+- Keep project description current
+- Update installation instructions if needed
+- Maintain accurate feature lists
+- Update screenshots or demos when UI changes
+
+---
+
+## Git Workflow Standards
+
+### Branch Management
+- Use `main` branch for production code
+- Create feature branches for new development
+- Merge only after code review and testing
+
+### Commit Messages
+- Use conventional commit format
+- Be descriptive and specific
+- Include issue numbers if applicable
+- Keep messages concise but informative
+
+### Push Requirements
+- Always push after successful commits
+- Ensure remote repository is up to date
+- Verify push was successful
+
+---
+
+## Project-Specific Rules
+
+### Flipto Game Engine Standards
+- Maintain casino/gaming theme consistency
+- Ensure responsive design across all components
+- Follow established color scheme and branding
+- Maintain game engine performance standards
+
+### Component Architecture
+- Use modular component structure
+- Maintain separation of concerns
+- Follow established file organization
+- Use consistent naming conventions
+
+### Performance Standards
+- Optimize bundle size
+- Minimize unnecessary re-renders
+- Use proper React hooks and patterns
+- Maintain fast loading times
+
+---
+
+## Emergency Procedures
+
+### If ESLint Errors Cannot Be Fixed Immediately
+- Document the issue in commit message
+- Create TODO comment in code
+- Plan fix for next development session
+- Do not commit broken code
+
+### If Build Fails
+- Revert to last working commit
+- Debug issue thoroughly
+- Test fix locally before committing
+- Ensure all tests pass
+
+### If Documentation Gets Out of Sync
+- Update documentation immediately
+- Verify accuracy of all files
+- Test documentation against actual code
+- Commit documentation updates separately
+
+---
+
+## Success Criteria
+
+A successful development session must:
+1. ✅ Pass all ESLint checks
+2. ✅ Have no unused code or dependencies
+3. ✅ Include updated commit log documentation
+4. ✅ Be properly committed and pushed to repository
+5. ✅ Include comprehensive summary report
+6. ✅ Maintain code quality standards
+7. ✅ Follow project-specific guidelines
+
+**Remember**: Quality over speed. Every change must meet these standards before being considered complete.
