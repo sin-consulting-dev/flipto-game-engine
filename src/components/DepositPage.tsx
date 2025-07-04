@@ -45,90 +45,75 @@ const DepositPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-row w-full h-full bg-[#181e29]">
-      {/* Sidebar Stepper */}
-      <div className="flex flex-col items-center pt-16 px-8 min-w-[220px]">
-        <div className="flex flex-col items-center gap-8">
-          <div className="flex flex-col items-center">
-            <div className="w-8 h-8 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-lg shadow-md border-2 border-yellow-400">1</div>
-            <div className="h-12 w-1 bg-gray-700" />
-            <div className="w-8 h-8 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-lg shadow-md border-2 border-yellow-400">2</div>
-            <div className="h-12 w-1 bg-gray-700" />
-            <div className="w-8 h-8 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-lg shadow-md border-2 border-yellow-400">3</div>
-          </div>
+    <div className="flex flex-col max-w-4xl mx-auto pt-12 pb-8 px-4 w-full">
+      {/* Stepper */}
+      <div className="flex flex-row items-center mb-8">
+        <div className="flex flex-col items-center mr-8">
+          <div className="w-8 h-8 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-lg shadow-md border-2 border-yellow-400">1</div>
+          <div className="h-12 w-1 bg-gray-700" />
+          <div className="w-8 h-8 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-lg shadow-md border-2 border-yellow-400">2</div>
+          <div className="h-12 w-1 bg-gray-700" />
+          <div className="w-8 h-8 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-lg shadow-md border-2 border-yellow-400">3</div>
+        </div>
+        <h2 className="text-2xl font-bold text-primary-yellow">Deposit Crypto</h2>
+      </div>
+      {/* Select Coin */}
+      <div className="mb-6">
+        <div className="text-lg font-bold text-white mb-2">Select Coin</div>
+        <div className="flex items-center gap-3 bg-[#232b39] rounded-lg px-4 py-3 border border-[#2d3748] w-full max-w-md">
+          <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">USDT</span>
+          <span className="text-gray-400 text-base font-medium ml-1">TetherUS</span>
         </div>
       </div>
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col max-w-4xl mx-auto pt-12 pb-8 px-4">
-        <h2 className="text-2xl font-bold text-primary-yellow mb-8">Deposit Crypto</h2>
-        {/* Select Coin */}
-        <div className="mb-6">
-          <div className="text-lg font-bold text-white mb-2">Select Coin</div>
-          <div className="flex items-center gap-3 bg-[#232b39] rounded-lg px-4 py-3 border border-[#2d3748] w-full max-w-md">
-            <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">USDT</span>
-            <span className="text-gray-400 text-base font-medium ml-1">TetherUS</span>
-          </div>
-        </div>
-        {/* Select Network */}
-        <div className="mb-6">
-          <div className="text-lg font-bold text-white mb-2">Select Network</div>
-          <div className="flex items-center gap-3 bg-[#232b39] rounded-lg px-4 py-3 border border-[#2d3748] w-full max-w-md">
-            <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">TRX</span>
-            <span className="text-gray-400 text-base font-medium ml-1">Tron (TRC20)</span>
-            <span className="text-gray-500 text-sm ml-4">Contract address ending in <span className="font-mono">{walletAddress.slice(-4)}</span></span>
-          </div>
-        </div>
-        {/* Deposit Address */}
-        <div className="mb-6">
-          <div className="text-lg font-bold text-white mb-2">Deposit Address</div>
-          <div className="flex items-center gap-4 bg-[#232b39] rounded-lg px-4 py-4 border border-[#2d3748] w-full max-w-md">
-            <div className="bg-[#181e29] p-2 rounded-lg flex items-center border border-[#2d3748]">
-              <QRCodeSVG value={walletAddress} size={72} bgColor="#181e29" fgColor="#fff" />
-            </div>
-            <div className="flex flex-col justify-center">
-              <div className="text-xs text-gray-400 font-medium mb-1">Address</div>
-              <div className="font-mono text-primary-yellow text-base font-extrabold flex items-center gap-2 whitespace-nowrap">
-                {walletAddress}
-                <button type="button" className="ml-1 text-primary-yellow hover:text-yellow-400" onClick={() => {navigator.clipboard.writeText(walletAddress)}}>
-                  <FaRegCopy className="h-5 w-5" />
-                </button>
-              </div>
-              <div className="text-xs text-gray-400 mt-1">Minimum deposit <span className="font-extrabold text-primary-yellow">More than 0.01 USDT</span></div>
-            </div>
-          </div>
-          <div className="text-xs text-gray-400 mt-2 cursor-pointer select-none">More Details ▼</div>
-        </div>
-        {/* Recent Deposits */}
-        <div className="mt-10">
-          <div className="text-lg font-bold text-white mb-4">Recent Deposits</div>
-          <div className="bg-[#232b39] rounded-lg border border-[#2d3748] p-4 w-full max-w-2xl">
-            {mockDeposits.map((d, i) => (
-              <div key={i} className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-[#2d3748] last:border-b-0 py-3 gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-primary-yellow font-bold text-base">{d.amount} USDT</span>
-                  <span className="bg-green-700 text-green-200 text-xs font-bold px-2 py-1 rounded ml-2">{d.status}</span>
-                </div>
-                <div className="flex flex-wrap gap-4 text-xs text-gray-400 font-mono">
-                  <span>Date {d.date}</span>
-                  <span>Network {d.network}</span>
-                  <span>Address {d.address.slice(0, 6)}...{d.address.slice(-6)}</span>
-                  <span>TxID {d.txid}</span>
-                  <span>Deposit wallet Spot Wallet</span>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Select Network */}
+      <div className="mb-6">
+        <div className="text-lg font-bold text-white mb-2">Select Network</div>
+        <div className="flex items-center gap-3 bg-[#232b39] rounded-lg px-4 py-3 border border-[#2d3748] w-full max-w-md">
+          <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">TRX</span>
+          <span className="text-gray-400 text-base font-medium ml-1">Tron (TRC20)</span>
+          <span className="text-gray-500 text-sm ml-4">Contract address ending in <span className="font-mono">{walletAddress.slice(-4)}</span></span>
         </div>
       </div>
-      {/* FAQ Section */}
-      <div className="hidden lg:flex flex-col pt-16 pl-8 min-w-[260px]">
-        <div className="text-lg font-bold text-white mb-4">FAQ</div>
-        <ul className="text-gray-300 text-sm space-y-3">
-          <li>How to deposit crypto? (Video)</li>
-          <li>How to Deposit Crypto Step-by-step Guide</li>
-          <li>Deposit hasn't arrived?</li>
-          <li>Deposit & Withdrawal Status query</li>
-        </ul>
+      {/* Deposit Address */}
+      <div className="mb-6">
+        <div className="text-lg font-bold text-white mb-2">Deposit Address</div>
+        <div className="flex items-center gap-4 bg-[#232b39] rounded-lg px-4 py-4 border border-[#2d3748] w-full max-w-md">
+          <div className="bg-[#181e29] p-2 rounded-lg flex items-center border border-[#2d3748]">
+            <QRCodeSVG value={walletAddress} size={72} bgColor="#181e29" fgColor="#fff" />
+          </div>
+          <div className="flex flex-col justify-center">
+            <div className="text-xs text-gray-400 font-medium mb-1">Address</div>
+            <div className="font-mono text-primary-yellow text-base font-extrabold flex items-center gap-2 whitespace-nowrap">
+              {walletAddress}
+              <button type="button" className="ml-1 text-primary-yellow hover:text-yellow-400" onClick={() => {navigator.clipboard.writeText(walletAddress)}}>
+                <FaRegCopy className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="text-xs text-gray-400 mt-1">Minimum deposit <span className="font-extrabold text-primary-yellow">More than 0.01 USDT</span></div>
+          </div>
+        </div>
+        <div className="text-xs text-gray-400 mt-2 cursor-pointer select-none">More Details ▼</div>
+      </div>
+      {/* Recent Deposits */}
+      <div className="mt-10">
+        <div className="text-lg font-bold text-white mb-4">Recent Deposits</div>
+        <div className="bg-[#232b39] rounded-lg border border-[#2d3748] p-4 w-full max-w-2xl">
+          {mockDeposits.map((d, i) => (
+            <div key={i} className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-[#2d3748] last:border-b-0 py-3 gap-2">
+              <div className="flex items-center gap-2">
+                <span className="text-primary-yellow font-bold text-base">{d.amount} USDT</span>
+                <span className="bg-green-700 text-green-200 text-xs font-bold px-2 py-1 rounded ml-2">{d.status}</span>
+              </div>
+              <div className="flex flex-wrap gap-4 text-xs text-gray-400 font-mono">
+                <span>Date {d.date}</span>
+                <span>Network {d.network}</span>
+                <span>Address {d.address.slice(0, 6)}...{d.address.slice(-6)}</span>
+                <span>TxID {d.txid}</span>
+                <span>Deposit wallet Spot Wallet</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
