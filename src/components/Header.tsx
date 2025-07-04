@@ -34,7 +34,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-secondary-dark/50 border-b border-border-color">
+    <header className="bg-secondary-dark/50 border-b border-border-color fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
         <div className="flex items-center space-x-8">
           <Link to="/" className="text-2xl font-bold text-primary-yellow hover:opacity-80 transition-opacity">Flipto</Link>

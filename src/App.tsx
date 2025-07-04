@@ -15,17 +15,19 @@ function App() {
     <BrowserRouter>
       <div className="h-screen text-white flex flex-col">
         <Header />
-        <div className="flex flex-row flex-1 min-h-0 overflow-hidden">
+        <div className="flex flex-row flex-1 min-h-0 overflow-hidden pt-[74px]">
           <Sidebar />
-          <Routes>
-            <Route path="/slots" element={<SlotsPage />} />
-            <Route path="/live-casino" element={<LiveCasinoPage />} />
-            <Route path="/sports" element={<SportsbookPage />} />
-            <Route path="/vip" element={<VIPPage />} />
-            <Route path="/transaction-history" element={<TransactionHistoryPage />} />
-            <Route path="/deposit" element={<DepositPage />} />
-            <Route path="/*" element={<MainContent />} />
-          </Routes>
+          <div className="flex-1 flex flex-col min-h-0 gap-4">
+            <Routes>
+              <Route path="/slots" element={<SlotsPage />} />
+              <Route path="/live-casino" element={<LiveCasinoPage />} />
+              <Route path="/sports" element={<SportsbookPage />} />
+              <Route path="/vip" element={<VIPPage />} />
+              <Route path="/transaction-history" element={<TransactionHistoryPage />} />
+              <Route path="/deposit" element={<DepositPage />} />
+              <Route path="/*" element={<MainContent />} />
+            </Routes>
+          </div>
         </div>
         <Footer />
       </div>
