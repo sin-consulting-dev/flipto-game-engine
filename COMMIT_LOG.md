@@ -24,6 +24,7 @@
 - **5b41edf** (66 minutes ago) - Fix unused React imports and add Swiper CSS type declarations
 - **af8e3d0** (2 days ago) - fix: Remove invalid TypeScript compiler option
 - **ff1955e** (2 days ago) - fix: Resolve TypeScript/ESLint linter errors
+- **f523786** (2 days ago) - fix: Remove custom sidebar/FAQ from DepositPage to fit Flipto layout and prevent overlap
 
 ### Project Configuration
 - **f22a70a** (73 minutes ago) - Update project rules in .cursor/rules/project-rule.mdc

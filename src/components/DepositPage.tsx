@@ -93,6 +93,11 @@ const DepositPage = () => {
           </div>
         </div>
         <div className="text-xs text-gray-400 mt-2 cursor-pointer select-none">More Details ▼</div>
+        <div className="flex justify-center mt-6">
+          <button className="bg-primary-yellow text-gray-900 font-extrabold text-lg py-3 px-16 rounded-lg hover:bg-yellow-400 transition-colors shadow-md">
+            Submit Deposit
+          </button>
+        </div>
       </div>
       {/* Recent Deposits */}
       <div className="mt-10">

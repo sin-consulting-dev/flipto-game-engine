@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Import Optimization**: Removed unused React imports
 - **TypeScript Errors**: Compiler option fixes and type declarations
 - **Component Consistency**: Unified design patterns across pages
+- Fixed layout overlap by removing custom sidebar/FAQ from DepositPage ([f523786])
 
 ### Technical
 - **Build System**: Vite configuration for fast development
