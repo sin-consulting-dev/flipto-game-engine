@@ -31,6 +31,9 @@
 ### Feature Additions
 - **5b5178d** (78 minutes ago) - Add TransactionHistoryPage and update components
 
+## Features
+- feat(3e8f29d, 2024-06-10 22:13 GMT+7): Add USDT deposit modal with QR code and stepper to Header, matching Binance style
+
 ## Previous Development (2-7 Days Ago)
 
 ### UI/UX Enhancements

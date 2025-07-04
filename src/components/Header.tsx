@@ -88,69 +88,71 @@ const Header = () => {
       </div>
       {isDepositOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-secondary-dark rounded-xl shadow-2xl p-8 w-full max-w-md relative">
-            <button className="absolute top-4 right-4 text-gray-400 hover:text-white" onClick={() => setIsDepositOpen(false)}>
-              <FaTimes size={22} />
+          <div className="bg-[#232b39] rounded-2xl shadow-2xl px-8 pt-8 pb-6 w-full max-w-lg relative border border-[#2d3748]">
+            <button className="absolute top-5 right-5 text-gray-400 hover:text-white" onClick={() => setIsDepositOpen(false)}>
+              <FaTimes size={28} />
             </button>
-            <div className="flex flex-col gap-8">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-7 h-7 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-bold">1</div>
-                    <div className="h-8 w-1 bg-gray-700" />
-                  </div>
-                  <div>
-                    <div className="text-gray-300 text-xs font-semibold">Select Coin</div>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="bg-primary-dark px-2 py-1 rounded text-primary-yellow font-bold text-sm flex items-center gap-1">
-                        <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=032" alt="USDT" className="w-5 h-5 inline-block mr-1" /> USDT
-                      </span>
-                      <span className="text-gray-400 text-xs">TetherUS</span>
-                    </div>
+            <div className="flex flex-col gap-7">
+              {/* Step 1: Select Coin */}
+              <div className="flex items-start gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">1</div>
+                </div>
+                <div className="flex-1">
+                  <div className="text-white font-bold text-base mb-1">Select Coin</div>
+                  <div className="flex items-center gap-2">
+                    <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">
+                      USDT
+                    </span>
+                    <span className="text-gray-400 text-sm font-medium ml-1">TetherUS</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-7 h-7 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-bold">2</div>
-                    <div className="h-8 w-1 bg-gray-700" />
-                  </div>
+              </div>
+              {/* Step 2: Select Network */}
+              <div className="flex items-start gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">2</div>
+                </div>
+                <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between">
                   <div>
-                    <div className="text-gray-300 text-xs font-semibold">Select Network</div>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="bg-primary-dark px-2 py-1 rounded text-primary-yellow font-bold text-sm flex items-center gap-1">
-                        <img src="https://cryptologos.cc/logos/tron-trx-logo.png?v=032" alt="TRX" className="w-5 h-5 inline-block mr-1" /> TRX
+                    <div className="text-white font-bold text-base mb-1">Select Network</div>
+                    <div className="flex items-center gap-2">
+                      <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">
+                        TRX
                       </span>
-                      <span className="text-gray-400 text-xs">Tron (TRC20)</span>
-                      <span className="text-gray-500 text-xs ml-2">Contract address ending in <span className="font-mono">jLj6t</span></span>
+                      <span className="text-gray-400 text-sm font-medium ml-1">Tron (TRC20)</span>
                     </div>
                   </div>
+                  <div className="text-gray-400 text-xs font-medium mt-2 md:mt-0 md:text-right md:ml-4">Contract address ending in <span className="font-mono">jLj6t</span></div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-7 h-7 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-bold">3</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-300 text-xs font-semibold">Deposit Address</div>
-                    <div className="flex items-center gap-2 mt-2">
-                      <div className="bg-primary-dark p-2 rounded-md flex items-center">
-                        <QRCodeSVG value="TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM" size={64} bgColor="#23272f" fgColor="#fff" />
+              </div>
+              {/* Step 3: Deposit Address */}
+              <div className="flex items-start gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">3</div>
+                </div>
+                <div className="flex-1">
+                  <div className="text-white font-bold text-base mb-2">Deposit Address</div>
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#181e29] p-2 rounded-lg flex items-center border border-[#2d3748]">
+                      <QRCodeSVG value="TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM" size={72} bgColor="#181e29" fgColor="#fff" />
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <div className="text-xs text-gray-400 font-medium mb-1">Address</div>
+                      <div className="font-mono text-primary-yellow text-base font-extrabold flex items-center gap-2 whitespace-nowrap">
+                        TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM
+                        <button className="ml-1 text-primary-yellow hover:text-yellow-400" onClick={() => {navigator.clipboard.writeText('TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM')}}>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16h8M8 12h8m-7 8h6a2 2 0 002-2V7a2 2 0 00-2-2h-5.586a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 007.586 2H6a2 2 0 00-2 2v16a2 2 0 002 2h2" /></svg>
+                        </button>
                       </div>
-                      <div className="ml-2">
-                        <div className="text-xs text-gray-400">Address</div>
-                        <div className="font-mono text-white text-sm flex items-center gap-2">
-                          TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM
-                          <button className="ml-1 text-primary-yellow hover:text-yellow-400" onClick={() => {navigator.clipboard.writeText('TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM')}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16h8M8 12h8m-7 8h6a2 2 0 002-2V7a2 2 0 00-2-2h-5.586a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 007.586 2H6a2 2 0 00-2 2v16a2 2 0 002 2h2" /></svg>
-                          </button>
-                        </div>
-                        <div className="text-xs text-gray-500 mt-1">Minimum deposit <span className="font-semibold text-primary-yellow">More than 0.01 USDT</span></div>
-                      </div>
+                      <div className="text-xs text-gray-400 mt-1">Minimum deposit <span className="font-extrabold text-primary-yellow">More than 0.01 USDT</span></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="mt-6 text-center">
-                <button className="bg-primary-yellow text-gray-900 font-bold py-2 px-8 rounded-md hover:bg-yellow-400 transition-colors" onClick={() => setIsDepositOpen(false)}>
+              {/* Done Button */}
+              <div className="mt-2 flex justify-center">
+                <button className="bg-primary-yellow text-gray-900 font-extrabold text-lg py-3 px-16 rounded-lg hover:bg-yellow-400 transition-colors shadow-md" onClick={() => setIsDepositOpen(false)}>
                   Done
                 </button>
               </div>
