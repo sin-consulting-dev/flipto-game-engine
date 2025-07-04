@@ -34,6 +34,9 @@
 ## Features
 - feat(3e8f29d, 2024-06-10 22:13 GMT+7): Add USDT deposit modal with QR code and stepper to Header, matching Binance style
 
+## Style
+- style(9d8aa48, 2024-06-10 22:16 GMT+7): Redesign deposit modal to match Binance style and improve layout, colors, and spacing
+
 ## Previous Development (2-7 Days Ago)
 
 ### UI/UX Enhancements

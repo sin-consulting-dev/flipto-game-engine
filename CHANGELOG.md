@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Improved commit log formatting and categorization
 - Better organization of development history
+- Redesigned deposit modal to match Binance style ([9d8aa48])
 
 ## [1.0.0] - 2024-12-19
 

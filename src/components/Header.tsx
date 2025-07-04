@@ -3,6 +3,14 @@ import { FaUserCircle, FaTimes } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 
+// Helper to generate a random TRON (TRC20) address (starts with T, 34 chars)
+function randomTronAddress() {
+  const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+  let addr = 'T';
+  for (let i = 0; i < 33; i++) addr += chars[Math.floor(Math.random() * chars.length)];
+  return addr;
+}
+
 const Header = () => {
   const navItems = [
     { name: 'Originals', path: '/' },
@@ -16,10 +24,17 @@ const Header = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const [isDepositOpen, setIsDepositOpen] = useState(false);
+  const [depositAmount, setDepositAmount] = useState('');
+  const [walletAddress, setWalletAddress] = useState(randomTronAddress());
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  // Reset wallet address each time modal opens
+  useEffect(() => {
+    if (isDepositOpen) setWalletAddress(randomTronAddress());
+  }, [isDepositOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -92,71 +107,71 @@ const Header = () => {
             <button className="absolute top-5 right-5 text-gray-400 hover:text-white" onClick={() => setIsDepositOpen(false)}>
               <FaTimes size={28} />
             </button>
-            <div className="flex flex-col gap-7">
-              {/* Step 1: Select Coin */}
-              <div className="flex items-start gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">1</div>
-                </div>
+            <form className="flex flex-col gap-7" onSubmit={e => { e.preventDefault(); setIsDepositOpen(false); }}>
+              {/* 1. Select Coin */}
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">1</div>
                 <div className="flex-1">
                   <div className="text-white font-bold text-base mb-1">Select Coin</div>
                   <div className="flex items-center gap-2">
-                    <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">
-                      USDT
-                    </span>
+                    <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">USDT</span>
                     <span className="text-gray-400 text-sm font-medium ml-1">TetherUS</span>
                   </div>
                 </div>
               </div>
-              {/* Step 2: Select Network */}
-              <div className="flex items-start gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">2</div>
-                </div>
-                <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <div className="text-white font-bold text-base mb-1">Select Network</div>
-                    <div className="flex items-center gap-2">
-                      <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider flex items-center gap-1 shadow border border-yellow-400">
-                        TRX
-                      </span>
-                      <span className="text-gray-400 text-sm font-medium ml-1">Tron (TRC20)</span>
-                    </div>
-                  </div>
-                  <div className="text-gray-400 text-xs font-medium mt-2 md:mt-0 md:text-right md:ml-4">Contract address ending in <span className="font-mono">jLj6t</span></div>
+              {/* 2. Amount */}
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">2</div>
+                <div className="flex-1">
+                  <div className="text-white font-bold text-base mb-1">Amount</div>
+                  <input
+                    type="number"
+                    min="10"
+                    step="any"
+                    className="w-full bg-[#181e29] border border-[#2d3748] rounded-lg px-4 py-2 text-primary-yellow font-extrabold text-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-yellow/40"
+                    placeholder="Minimum amount 10 USDT"
+                    value={depositAmount}
+                    onChange={e => setDepositAmount(e.target.value)}
+                    required
+                  />
                 </div>
               </div>
-              {/* Step 3: Deposit Address */}
-              <div className="flex items-start gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">3</div>
-                </div>
+              {/* 3. Transfer Method */}
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">3</div>
                 <div className="flex-1">
-                  <div className="text-white font-bold text-base mb-2">Deposit Address</div>
+                  <div className="text-white font-bold text-base mb-1">Transfer Method</div>
+                  <span className="bg-[#181e29] px-3 py-1 rounded-lg text-primary-yellow font-extrabold text-base uppercase tracking-wider shadow border border-yellow-400">TRON (TRC20)</span>
+                </div>
+              </div>
+              {/* 4. Wallet Address */}
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary-yellow text-gray-900 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-yellow-400">4</div>
+                <div className="flex-1">
+                  <div className="text-white font-bold text-base mb-2">Wallet Address</div>
                   <div className="flex items-center gap-4">
                     <div className="bg-[#181e29] p-2 rounded-lg flex items-center border border-[#2d3748]">
-                      <QRCodeSVG value="TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM" size={72} bgColor="#181e29" fgColor="#fff" />
+                      <QRCodeSVG value={walletAddress} size={72} bgColor="#181e29" fgColor="#fff" />
                     </div>
                     <div className="flex flex-col justify-center">
                       <div className="text-xs text-gray-400 font-medium mb-1">Address</div>
                       <div className="font-mono text-primary-yellow text-base font-extrabold flex items-center gap-2 whitespace-nowrap">
-                        TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM
-                        <button className="ml-1 text-primary-yellow hover:text-yellow-400" onClick={() => {navigator.clipboard.writeText('TKdEpaX7oezMt2jc7XLzykzuGvHR1knCLM')}}>
+                        {walletAddress}
+                        <button type="button" className="ml-1 text-primary-yellow hover:text-yellow-400" onClick={() => {navigator.clipboard.writeText(walletAddress)}}>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16h8M8 12h8m-7 8h6a2 2 0 002-2V7a2 2 0 00-2-2h-5.586a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 007.586 2H6a2 2 0 00-2 2v16a2 2 0 002 2h2" /></svg>
                         </button>
                       </div>
-                      <div className="text-xs text-gray-400 mt-1">Minimum deposit <span className="font-extrabold text-primary-yellow">More than 0.01 USDT</span></div>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* Done Button */}
+              {/* 5. Submit Button */}
               <div className="mt-2 flex justify-center">
-                <button className="bg-primary-yellow text-gray-900 font-extrabold text-lg py-3 px-16 rounded-lg hover:bg-yellow-400 transition-colors shadow-md" onClick={() => setIsDepositOpen(false)}>
-                  Done
+                <button type="submit" className="bg-primary-yellow text-gray-900 font-extrabold text-lg py-3 px-16 rounded-lg hover:bg-yellow-400 transition-colors shadow-md">
+                  Submit Deposit
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
