@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **ESLint Configuration**: Code quality and style enforcement
 - **Tailwind CSS**: Modern utility-first styling
 - USDT deposit modal with QR code and stepper in Header ([3e8f29d])
+- Deposit modal now includes editable amount, random TRON address, and correct TRC20 transfer method ([b748443])
 
 ### Changed
 - **UI/UX Improvements**: Consistent design language across all pages
